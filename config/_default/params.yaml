@@ -55,4 +55,3 @@ enableA11y: false
 
 # Default image fallback
 defaultBackgroundImage: "https://api.yppp.net/pc.php"
-defaultFeaturedImage: "https://api.yppp.net/pc.php"
