@@ -1,6 +1,6 @@
 # Blowfish theme parameters
 colorScheme: "blowfish"
-defaultAppearance: "dark"
+defaultAppearance: "light"
 autoSwitchAppearance: true
 
 enableSearch: true
@@ -52,3 +52,7 @@ sitemap:
   showSummary: true
 
 enableA11y: false
+
+# Default image fallback
+defaultBackgroundImage: "https://api.yppp.net/pc.php"
+defaultFeaturedImage: "https://api.yppp.net/pc.php"

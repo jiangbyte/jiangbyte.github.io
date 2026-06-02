@@ -52,6 +52,11 @@
 {{- $alt := .Page.Title -}}
 {{- with .Page.Params.alt }}{{ $alt = . }}{{ end -}}
 
+{{/* add cache buster for default API images */}}
+{{ if and $featuredURL $useDefault }}
+  {{ $uid := .File.UniqueID | default (now.Unix) }}
+  {{ $featuredURL = printf "%s?_=%s" $featuredURL $uid }}
+{{ end }}
 {{/* fallback to random API if still no image */}}
 {{ if not (or $featured $featuredURL) }}
   {{ $uid := .File.UniqueID | default (now.Unix) }}
