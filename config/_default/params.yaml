@@ -22,7 +22,7 @@ footer:
   showScrollToTop: true
 
 homepage:
-  layout: "page"
+  layout: "profile"
   showRecent: true
   showRecentItems: 6
   showMoreLink: true
@@ -58,3 +58,13 @@ smartTOCHideUnfocusedChildren: true
 
 # Default image fallback
 defaultBackgroundImage: "https://api.yppp.net/pc.php"
+
+# Author
+author:
+  name: "CharlieByte"
+  image: "https://avatars.githubusercontent.com/jiangbyte"
+  headline: "Stay curious, keep coding."
+  links:
+    - github:
+        url: "https://github.com/jiangbyte"
+        icon: "github"

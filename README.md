@@ -1,6 +1,6 @@
 # Charlie Byte Biu~
 
-Personal blog built with [Hugo](https://gohugo.io) and [Blowfish](https://blowfish.page/) theme.
+Personal blog by **CharlieByte**, built with [Hugo](https://gohugo.io) and [Blowfish](https://blowfish.page/) theme.
 
 ## Quick Start
 
