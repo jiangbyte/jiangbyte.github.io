@@ -1,0 +1,66 @@
+baseURL: 'https://jiangbyte.github.io'
+locale: en
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+title: Charlie Byte Biu~
+theme: narrow
+
+hasCJKLanguage: false
+enableEmoji: true
+
+mainSections: ["posts"]
+
+permalinks:
+  posts: /posts/:year/:month/:day/:slug/
+
+pagination:
+  pagerSize: 6
+  path: "page"
+
+taxonomies:
+  category: categories
+  tag: tags
+
+markup:
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+    ordered: false
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      extras:
+        delete:
+          enable: true
+        insert:
+          enable: true
+        mark:
+          enable: true
+        subscript:
+          enable: true
+        superscript:
+          enable: true
+      strikethrough: true
+  highlight:
+    codeFences: true
+    guessSyntax: false
+    lineNos: false
+    lineNumbersInTable: false
+    noClasses: false
+    style: github
+    tabWidth: 2
+
+outputs:
+  home: ["HTML", "RSS", "JSON", "WebAppManifest"]
+
+outputFormats:
+  WebAppManifest:
+    mediaType: "application/manifest+json"
+    baseName: "site"
+    isPlainText: true
+
+module:
+  hugoVersion:
+    extended: true
+    min: 0.158.0
