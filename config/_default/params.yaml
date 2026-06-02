@@ -11,6 +11,7 @@ mainSections: ["posts"]
 disableImageOptimization: false
 hotlinkFeatureImage: true
 
+logo: "https://avatars.githubusercontent.com/jiangbyte"
 header:
   layout: "fixed"
 
