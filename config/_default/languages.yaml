@@ -2,3 +2,15 @@ en:
   locale: en
   label: "English"
   weight: 1
+  title: "Charlie Byte Biu~"
+  params:
+    logo: "https://avatars.githubusercontent.com/jiangbyte"
+    description: "Personal blog by CharlieByte"
+    author:
+      name: "CharlieByte"
+      image: "https://avatars.githubusercontent.com/jiangbyte"
+      headline: "Stay curious, keep coding."
+      bio: ""
+      links:
+        - github: "https://github.com/jiangbyte"
+        - email: "mailto:jiangbyte@example.com"
