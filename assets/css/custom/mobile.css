@@ -1,0 +1,79 @@
+/* ===== 移动端样式优化 ===== */
+
+/* 移动端：弱化边框视觉，用阴影替代 */
+@media (max-width: 767px) {
+  /* 文章列表卡片：去掉边框，改为轻阴影 */
+  article.group > a > div {
+    border-color: transparent !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+  }
+
+  /* 封面图片容器：去掉圆角和边框 */
+  article.group .overflow-hidden.rounded-lg {
+    border-radius: 0.5rem !important;
+  }
+
+  /* header 容器：弱化边框 */
+  header.sticky > div {
+    border-color: color-mix(in oklab, var(--color-border) 40%, transparent) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* 底部 dock：弱化边框 */
+  #dock {
+    border-color: color-mix(in oklab, var(--color-border) 40%, transparent) !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* 导航面包屑区域的边框弱化 */
+  .border-border.border-t,
+  .border-border.border-b {
+    border-color: color-mix(in oklab, var(--color-border) 40%, transparent) !important;
+  }
+
+  /* 搜索弹窗在移动端全屏 */
+  #search-modal {
+    max-width: calc(100vw - 2rem) !important;
+  }
+
+  /* 文章详情页的代码块 */
+  .code-block-container {
+    border-color: color-mix(in oklab, var(--color-border) 40%, transparent) !important;
+  }
+
+  /* 页面内边距调整 */
+  main > div.px-4 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* 文章封面图片 */
+  .mb-8.overflow-hidden.rounded-2xl {
+    border-radius: 0.75rem !important;
+  }
+}
+
+/* 移动端小屏额外优化 */
+@media (max-width: 480px) {
+  article.group > a > div {
+    border-radius: 0.75rem !important;
+  }
+
+  .card-list .p-6,
+  article.group .p-6 {
+    padding: 0.875rem !important;
+  }
+
+  /* 文章标题缩小 */
+  h3.text-xl {
+    font-size: 1.125rem !important;
+  }
+}
+
+/* 封面图片加载占位 */
+img[loading="lazy"] {
+  background-color: var(--color-muted);
+  color: transparent;
+}
