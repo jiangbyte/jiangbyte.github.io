@@ -31,6 +31,7 @@ homepage:
   cardViewScreenWidth: false
 
 article:
+  showTableOfContents: true
   showDate: true
   showDateUpdated: false
   showAuthor: true
@@ -52,6 +53,8 @@ sitemap:
   showSummary: true
 
 enableA11y: false
+smartTOC: true
+smartTOCHideUnfocusedChildren: true
 
 # Default image fallback
 defaultBackgroundImage: "https://api.yppp.net/pc.php"
