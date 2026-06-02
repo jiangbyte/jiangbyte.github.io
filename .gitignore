@@ -5,9 +5,6 @@
 # Hugo build lock file
 .hugo_build.lock
 
-# Temporary / generated scripts
-/tmp/
-
 # OS files
 .DS_Store
 Thumbs.db

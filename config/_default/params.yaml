@@ -1,109 +1,54 @@
-# Basic site info
-description: "Charlie Byte Biu~ - A personal blog by Charlie"
-keywords: ["Blog", "Technology", "Programming"]
-defaultAuthor: "Charlie"
-language: "en"
-shortName: "Charlie Byte Biu~"
-images:
-  - "/images/og-default.avif"
+# Blowfish theme parameters
+colorScheme: "blowfish"
+defaultAppearance: "dark"
+autoSwitchAppearance: true
 
-# Favicon
-# favicon:
-#   svg: "/favicon.svg"
+enableSearch: true
+enableCodeCopy: true
 
-# Author info
-author:
-  name: "Charlie"
-  title: "Charlie Byte Biu~"
-  description: "Stay curious, keep coding."
-  avatar: "https://avatars.githubusercontent.com/jiangbyte"
-  social:
-    - name: "GitHub"
-      url: "https://github.com/jiangbyte"
-      icon: "github"
+mainSections: ["posts"]
 
-# Header
+disableImageOptimization: false
+hotlinkFeatureImage: true
+
 header:
-  sticky: true
-  logo:
-    image: "https://avatars.githubusercontent.com/jiangbyte"
-    link: "/"
-  showThemeSwitch: false
-  showDarkModeSwitch: true
-  showLanguageSwitch: false
-  languageSwitchMode: "dropdown"
+  layout: "fixed"
 
-# Dock
-dock: "scroll"
+footer:
+  showMenu: true
+  showCopyright: true
+  showThemeAttribution: true
+  showAppearanceSwitcher: true
+  showScrollToTop: true
 
-# Content width
-contentWidth: "56rem"
+homepage:
+  layout: "page"
+  showRecent: true
+  showRecentItems: 6
+  showMoreLink: true
+  showMoreLinkDest: "posts"
+  cardView: true
+  cardViewScreenWidth: false
 
-# TOC
-toc:
-  enabled: true
-  position: "center"
+article:
+  showDate: true
+  showDateUpdated: false
+  showAuthor: true
+  showHero: true
+  heroStyle: "big"
+  showBreadcrumbs: true
+  showDraftLabel: true
+  showEdit: false
 
-# Color scheme
-colorScheme: "default"
-themes:
-  default:
-    name: "Default"
-    order: 1
-  emerald:
-    name: "Emerald"
-    order: 2
-  nord:
-    name: "Nord"
-    order: 3
-  sunset:
-    name: "Sunset"
-    order: 4
-  dracula:
-    name: "Dracula"
-    order: 5
-  minimal:
-    name: "Minimal"
-    order: 6
+list:
+  showSummary: true
+  showViews: false
+  showLikes: false
+  groupByYear: false
+  cardView: true
 
-# Home page
-home:
-  recentPostsCount: 5
-  contentOrder:
-    - author-section
-    - recent-posts
+sitemap:
+  showAuthor: true
+  showSummary: true
 
-# Post
-post:
-  showRelated: false
-  license:
-    show: false
-
-# Comments
-comments:
-  enabled: false
-
-# Analytics
-analytics:
-  enabled: false
-
-# Code block
-codeblock:
-  collapse:
-    enabled: true
-    defaultState: expanded
-    autoCollapseLines: 50
-    autoCollapseHeight: 400
-    collapsedHeight: 120
-
-# Reading progress
-readingProgress:
-  enabled: true
-  showOnHomepage: false
-
-# Date format
-dateFormat:
-  full: ":date_full"
-  long: ":date_long"
-  medium: ":date_medium"
-  short: ":date_short"
+enableA11y: false

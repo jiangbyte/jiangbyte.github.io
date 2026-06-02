@@ -3,8 +3,10 @@ locale: en
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 title: Charlie Byte Biu~
-theme: narrow
+theme: blowfish
 
+enableRobotsTXT: true
+summaryLength: 30
 hasCJKLanguage: false
 enableEmoji: true
 
@@ -18,8 +20,13 @@ pagination:
   path: "page"
 
 taxonomies:
-  category: categories
   tag: tags
+  category: categories
+  author: authors
+  series: series
+
+imaging:
+  anchor: 'Center'
 
 markup:
   tableOfContents:
@@ -52,13 +59,23 @@ markup:
     tabWidth: 2
 
 outputs:
-  home: ["HTML", "RSS", "JSON", "WebAppManifest"]
+  home: ["HTML", "RSS", "JSON"]
+  section: ["HTML", "RSS", "JSON"]
 
-outputFormats:
-  WebAppManifest:
-    mediaType: "application/manifest+json"
-    baseName: "site"
-    isPlainText: true
+related:
+  threshold: 0
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 100
+    - name: series
+      weight: 50
+    - name: authors
+      weight: 20
+    - name: date
+      weight: 10
 
 module:
   hugoVersion:

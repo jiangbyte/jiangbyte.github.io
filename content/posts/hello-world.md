@@ -2,7 +2,7 @@
 title: Hello World
 date: 2025-01-01
 draft: false
-cover: https://api.yppp.net/pc.php
+featureimage: https://api.yppp.net/pc.php
 description: Charlie Byte Biu~ 的第一篇文章，欢迎来看看
 categories:
   - Misc
