@@ -4,7 +4,6 @@ en:
   weight: 1
   title: "Charlie Byte Biu~"
   params:
-    logo: "https://avatars.githubusercontent.com/jiangbyte"
     description: "Personal blog by CharlieByte"
     author:
       name: "CharlieByte"
