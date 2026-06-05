@@ -1,0 +1,11 @@
+{
+  "newFileLocation": "folder",
+  "newFileFolderPath": "posts",
+  "attachmentFolderPath": "./assets",
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "showUnsupportedFiles": true,
+  "alwaysUpdateLinks": true,
+  "deleteUnlinkedAttachments": "always",
+  "promptDelete": false
+}

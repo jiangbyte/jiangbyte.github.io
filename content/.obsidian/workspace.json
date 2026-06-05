@@ -1,0 +1,211 @@
+{
+  "main": {
+    "id": "62f349ce8f86601e",
+    "type": "split",
+    "children": [
+      {
+        "id": "7bcf48e9db385d2e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "39ed4765cc62edc3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "projects/_index.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "_index"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ce3b54c896d34d15",
+    "type": "split",
+    "children": [
+      {
+        "id": "421c0c75b19269de",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6eb824cb9b388524",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "6916fb0ae2fd4fdf",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "2335da7d4aaae64d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "352cd977e4ceebe5",
+    "type": "split",
+    "children": [
+      {
+        "id": "cda80b0180f1e109",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1f2f6c290324900c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "880ce15b030b16a7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "aa4cde8de802ef8b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "84f9ca1e52242234",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "2bd8b88c760e4fe8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "markdown-importer:打开 Markdown 格式转换器": false
+    }
+  },
+  "active": "39ed4765cc62edc3",
+  "lastOpenFiles": [
+    "projects/jiangbyte-io/index.md",
+    "posts/_index.md",
+    "about/_index.md",
+    "archives/_index.md",
+    "categories/_index.md",
+    "tags/_index.md",
+    "projects/_index.md",
+    "posts/JDK17源码/Object/源码解析/index.md",
+    "posts/getting-started-with-hugo.md",
+    "posts/2025-01-15.md",
+    "posts/JDK17源码/Object/源码阅读/assets/08aaeb96f1f7360a2016ab5da1d6dd2d8f9933b62f9137-uqfbvd_fw658webp.webp",
+    "posts/JDK17源码/Object/源码阅读/08aaeb96f1f7360a2016ab5da1d6dd2d8f9933b62f9137-uqfbvd_fw658webp.webp",
+    "posts/weekly-links-1.md",
+    "posts/JDK17源码/Object/源码解析/assets/v2-773175d3d55668daf774d1b0fd0427b1_1440w.jpg",
+    "posts/JDK17源码/Object/源码解析/assets",
+    "posts/JDK17源码/Object/源码阅读/Object.assets/v2-773175d3d55668daf774d1b0fd0427b1_1440w.jpg",
+    "posts/JDK17源码/Object/源码阅读/Object.assets",
+    "posts/JDK17源码/Object/源码解析",
+    "posts/JDK17源码/Object",
+    "posts/JDK17源码",
+    "posts/未命名.md",
+    "posts/understanding-css-grid.md",
+    "posts/my-favorite-tools.md",
+    "posts/learning-rust.md"
+  ]
+}
