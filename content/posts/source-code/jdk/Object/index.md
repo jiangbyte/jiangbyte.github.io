@@ -2,9 +2,9 @@
 title: Object 源码解析
 date: 2026-06-05
 draft: false
-description:
+description: JDK17 Object 类源码解析，涵盖类注释、构造方法、内存布局（Mark Word / Klass Pointer）、equals 与 hashCode 契约
 categories:
-  - JDK17
+  - SourceCode
 tags:
   - JDK17
   - SourceCode

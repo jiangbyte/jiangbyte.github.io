@@ -1,6 +1,5 @@
 ---
 title: Hugo 相对路径图片显示问题的分析与解决
-slug: hugo-relative-image-path-fix
 date: 2026-06-05
 draft: false
 description: 解决 Hugo 博客中 leaf page 使用相对路径引用图片无法显示的问题，通过 render-image.html 自定义渲染器修复路径解析
