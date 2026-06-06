@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "51f00c074a43ddb4",
+        "id": "e07f8954208aa6a5",
         "type": "tabs",
         "children": [
           {
-            "id": "205734ccb44d12c2",
+            "id": "7ed950a71c83e0dc",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -74,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 337.5
   },
   "right": {
     "id": "352cd977e4ceebe5",
@@ -173,12 +173,21 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "bases:新建数据库": false,
-      "markdown-importer:打开 Markdown 格式转换器": false
+      "bases:新建数据库": false
     }
   },
-  "active": "205734ccb44d12c2",
+  "active": "6eb824cb9b388524",
   "lastOpenFiles": [
+    "resume/_index.md",
+    "resume/seddP3gVI",
+    "resume/sedgs8wSo",
+    "resume/sede5VF3J",
+    "resume/sedVN5zyO",
+    "resume/index.md",
+    "resume",
+    "未命名/From knowledge gaps to learning opportunities Leveraging OJS, LLM assistance, and code clone detection to support student programming learning and preserve academic integrity.md",
+    "未命名/From knowledge gaps to learning opportunities Leveraging OJS, LLM assistance, and code clone detection to support student programming learning and preserve academic integrity.txt",
+    "未命名",
     "posts/未命名.base",
     "projects/_index.md",
     "projects/jiangbyte-io/index.md",
@@ -197,9 +206,6 @@
     "posts/JDK17源码/Object/源码解析/assets",
     "posts/JDK17源码/Object/源码阅读/Object.assets/v2-773175d3d55668daf774d1b0fd0427b1_1440w.jpg",
     "posts/JDK17源码/Object/源码阅读/Object.assets",
-    "posts/JDK17源码/Object/源码解析",
-    "posts/JDK17源码/Object",
-    "posts/JDK17源码",
     "posts/未命名.md",
     "posts/understanding-css-grid.md",
     "posts/my-favorite-tools.md",

@@ -7,6 +7,10 @@ main:
     pageRef: /archives
     weight: 20
 
+  - name: Resume
+    pageRef: /resume
+    weight: 22
+
   - name: Projects
     pageRef: /projects
     weight: 25
@@ -20,6 +24,10 @@ main:
     weight: 40
 
 footer:
+  - name: Resume
+    pageRef: /resume
+    weight: 4
+
   - name: Projects
     pageRef: /projects
     weight: 5
