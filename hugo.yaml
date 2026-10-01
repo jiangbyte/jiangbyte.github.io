@@ -105,6 +105,8 @@ params:
         cover:
           - https://t.alcy.cc/pic/pc/518.webp
         copyright:
+          # 前景圆形头像；author_background 只是背后那层背景图
+          author: https://avatars.githubusercontent.com/u/116237950?v=4
           author_background: "https://t.alcy.cc/pic/pc/456.webp"
       meta:
         pv: false
