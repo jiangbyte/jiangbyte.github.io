@@ -1,0 +1,32 @@
+title: 关于
+sections:
+  - type: intro
+    greeting: 你好 👋
+    name_prefix: 我是
+    name: Charlie Zhang
+    description: Programming enthusiast based in GZ, CN.
+    pursuit:
+      label: 关注
+      lines: [写清楚, 再优化]
+      rotating_words: [实践, 运维, 工具, 笔记]
+
+  - type: values
+    motto:
+      label: 座右铭
+      prefix: 先跑通
+      content: 再抽象
+    expertise:
+      label: 擅长
+      prefix: 专注于
+      specialist: 工程实践
+      content: 可复现
+      level: 笔记化
+
+  - type: story
+    label: 关于本站
+    title: jiangbyte
+    content: |
+      这里是 Charlie Zhang 的个人笔记站。内容源仓是 [jiangbyte/Notes](https://github.com/jiangbyte/jiangbyte/tree/main/Notes)，通过 GitHub Actions 同步到本站点并用 Solitude（Hugo）构建发布。
+
+      - GitHub: [jiangbyte](https://github.com/jiangbyte)
+      - Resume: [jiangbyte.cn/resume](https://jiangbyte.cn/resume)

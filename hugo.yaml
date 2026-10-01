@@ -1,0 +1,208 @@
+baseURL: https://jiangbyte.github.io/
+title: jiangbyte
+locale: zh-CN
+defaultContentLanguage: zh-cn
+timeZone: Asia/Shanghai
+enableRobotsTXT: true
+enableGitInfo: false
+theme: solitude
+
+uglyURLs:
+  posts: true
+
+outputs:
+  home: [HTML, RSS, Search, Links]
+  section: [HTML, RSS]
+  taxonomy: [HTML, RSS]
+  term: [HTML, RSS]
+
+pagination:
+  pagerSize: 12
+
+permalinks:
+  posts: /p/:slug
+
+menus:
+  main:
+    - name: 文库
+      identifier: library
+      weight: 10
+    - name: 全部文章
+      pageRef: /archives
+      parent: library
+      weight: 10
+      params:
+        icon: fas fa-folder-closed
+    - name: 全部分类
+      pageRef: /categories
+      parent: library
+      weight: 20
+      params:
+        icon: fas fa-clone
+    - name: 全部标签
+      pageRef: /tags
+      parent: library
+      weight: 30
+      params:
+        icon: fas fa-tags
+    - name: 关于
+      pageRef: /about
+      weight: 20
+      params:
+        icon: fas fa-user
+    - name: GitHub
+      url: https://github.com/jiangbyte
+      weight: 30
+      params:
+        icon: fab fa-github
+
+params:
+  author:
+    name: Charlie Zhang
+    email: ""
+  description: Charlie Zhang 的个人笔记与实践记录
+  solitude:
+    site:
+      name:
+        class: text
+        custom: jiangbyte
+    nav:
+      group:
+        链接:
+          - name: GitHub
+            url: https://github.com/jiangbyte
+            icon: /img/logo.png
+          - name: Resume
+            url: https://jiangbyte.cn/resume
+            icon: /img/logo.png
+    hometop:
+      banner:
+        title: jiangbyte
+        desc: Charlie Zhang 的笔记与实践记录
+      recommendList: []
+    aside:
+      home:
+        noSticky: about
+        Sticky: newestPost,allInfo
+      post:
+        noSticky: about
+        Sticky: newestPost,allInfo
+      page:
+        noSticky: about
+        Sticky: newestPost,allInfo
+      my_card:
+        author:
+          img: https://github.com/jiangbyte.png
+          emoji: ""
+        description: Programming enthusiast based in GZ, CN.
+        content: 笔记同步自 jiangbyte/Notes，使用 Solitude 主题构建。
+        witty_words: [写清楚，再优化, 先跑通，再抽象]
+        information:
+          - name: GitHub
+            url: https://github.com/jiangbyte
+            icon: fab fa-github
+      siteinfo:
+        runtime: 2026-10-01 00:00:00
+    post:
+      default:
+        copyright:
+          author_background: ""
+      meta:
+        pv: false
+        comment: false
+      covercolor:
+        enable: true
+        mode: local
+      award:
+        enable: false
+        list: []
+      share:
+        enable: false
+        list: []
+    footer:
+      information:
+        author: /img/logo.png
+        left:
+          - name: GitHub
+            url: https://github.com/jiangbyte
+            icon: fab fa-github
+        right:
+          - name: 订阅
+            url: /index.xml
+            icon: fas fa-rss
+      group:
+        探索:
+          - name: 文章
+            url: /archives/
+          - name: 分类
+            url: /categories/
+          - name: 标签
+            url: /tags/
+        关于:
+          - name: 关于
+            url: /about/
+          - name: Resume
+            url: https://jiangbyte.cn/resume
+      links:
+        - name: 订阅
+          url: /index.xml
+    comment:
+      use: ""
+      commentBarrage: false
+      lazyload: false
+      count: false
+      sidebar: false
+      pv: false
+      newest_comment:
+        enable: false
+    console:
+      recentComment:
+        enable: false
+    right_menu:
+      commentBarrage: false
+    recent_comments:
+      enable: false
+    brevity:
+      enable: false
+    envelope:
+      enable: false
+    capsule:
+      enable: false
+    music:
+      enable: false
+    keyboard:
+      enable: true
+      list:
+        - modifier: shift
+          key: K
+          action: toggleKeyboard
+        - modifier: shift
+          key: D
+          action: toggleTheme
+        - modifier: mod
+          key: F
+          action: openSearch
+        - modifier: shift
+          key: R
+          action: randomPost
+        - name: 返回首页
+          modifier: shift
+          key: H
+          url: ./
+    highlight:
+      enable: true
+      copy: true
+      line_numbers: true
+      max_height: 360
+      themes:
+        light: github-light
+        dark: github-dark
+    lightbox: fancybox
+    cdn:
+      shiki: https://esm.sh/shiki@4.4.3
+    search:
+      enable: true
+      type: local
+      local:
+        preload: true
+        CDN: /search.xml
