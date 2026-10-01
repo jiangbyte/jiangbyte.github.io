@@ -79,7 +79,7 @@
   position: relative;
   z-index: 2;
   margin-left: auto;
-  background: rgba(255, 252, 248, 0.52) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
   backdrop-filter: blur(22px) saturate(1.4);
   -webkit-backdrop-filter: blur(22px) saturate(1.4);
   border-left: 1px solid rgba(255, 255, 255, 0.55);
@@ -157,13 +157,13 @@
   --efu-secondtext: rgba(26, 24, 22, 0.68);
   --efu-lighttext: #1a1816;
   --efu-hovertext: #000000;
-  --efu-card-bg: rgba(255, 253, 250, 0.94);
+  --efu-card-bg: rgba(255, 255, 255, 0.94);
   --efu-card-border: rgba(26, 24, 22, 0.08);
-  --efu-background: #f3f0ea;
-  --efu-secondbg: #f7f4ef;
+  --efu-background: #ffffff;
+  --efu-secondbg: #f7f7f7;
   --efu-ahoverbg: rgba(26, 24, 22, 0.05);
-  --milk-glass: rgba(255, 253, 250, 0.78);
-  --milk-glass-strong: rgba(255, 253, 250, 0.92);
+  --milk-glass: rgba(255, 255, 255, 0.78);
+  --milk-glass-strong: rgba(255, 255, 255, 0.92);
   --milk-ink: #1a1816;
   --milk-ink-soft: rgba(26, 24, 22, 0.7);
 }
