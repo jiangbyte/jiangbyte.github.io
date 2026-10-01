@@ -63,6 +63,13 @@ params:
         class: text
         custom: 撷时录
       icon: https://avatars.githubusercontent.com/u/116237950?v=4
+    # 乳白毛玻璃：暖石灰强调色，替代默认蓝 / 金
+    theme_color:
+      light: "#6e6860"
+      dark: "#ddd4c8"
+      nav_hover_text:
+        light: "#2a2825"
+        dark: "#1b1c20"
     nav:
       group:
         链接:
@@ -147,8 +154,9 @@ params:
       meta:
         pv: false
         comment: false
+      # 关闭取色，避免封面把主题色染回蓝紫
       covercolor:
-        enable: true
+        enable: false
         mode: local
       award:
         enable: false
