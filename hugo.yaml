@@ -1,5 +1,5 @@
 baseURL: https://jiangbyte.github.io/
-title: jiangbyte
+title: Charlie Zhang
 locale: zh-CN
 defaultContentLanguage: zh-cn
 timeZone: Asia/Shanghai
@@ -66,8 +66,9 @@ params:
   solitude:
     site:
       name:
+        # 头部只保留左侧四格 icon（back-home-button），不显示站名文字
         class: text
-        custom: jiangbyte
+        custom: ""
     nav:
       group:
         链接:
@@ -79,7 +80,7 @@ params:
             icon: /img/logo.png
     hometop:
       banner:
-        title: jiangbyte
+        title: Charlie Zhang
         desc: Charlie Zhang 的笔记与实践记录
       recommendList: []
     aside:

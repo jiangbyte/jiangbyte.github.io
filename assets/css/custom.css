@@ -1,0 +1,4 @@
+/* Header: keep only the back-home icon; hide site-name text */
+#site-name .title {
+  display: none;
+}
