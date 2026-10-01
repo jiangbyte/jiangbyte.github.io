@@ -304,17 +304,24 @@ a.article-meta__tags:hover {
   color: #1a1816 !important;
 }
 
-/* Pagination: hover soft glass (no border); current solid ink */
+/* Pagination: shared for home + archives (hover soft glass, current solid ink) */
 #pagination:not(.pagination-post) .page-number,
-#pagination:not(.pagination-post) a.extend {
+#pagination:not(.pagination-post) a.extend,
+.archive-page-section-pagination .archive-page-number,
+.archive-page-section-pagination .archive-page-extend {
   border: none !important;
-  box-shadow: 0 2px 8px rgba(20, 24, 32, 0.05);
+  border-color: transparent !important;
+  background: #fff !important;
+  color: var(--milk-ink) !important;
+  box-shadow: 0 2px 8px rgba(20, 24, 32, 0.05) !important;
 }
 
 #pagination:not(.pagination-post) .page-number:hover,
-#pagination:not(.pagination-post) a.extend:hover {
+#pagination:not(.pagination-post) a.extend:hover,
+.archive-page-section-pagination .archive-page-number:hover,
+.archive-page-section-pagination .archive-page-extend:hover:not(:disabled) {
   color: var(--milk-ink) !important;
-  background: var(--milk-glass) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
   border: none !important;
   border-color: transparent !important;
   box-shadow: 0 4px 14px rgba(20, 24, 32, 0.08) !important;
@@ -323,8 +330,10 @@ a.article-meta__tags:hover {
 }
 
 #pagination:not(.pagination-post) .page-number.current,
-#pagination:not(.pagination-post) .page-number.current:hover {
-  color: #f7f4ef !important;
+#pagination:not(.pagination-post) .page-number.current:hover,
+.archive-page-section-pagination .archive-page-number.is-current,
+.archive-page-section-pagination .archive-page-number.is-current:hover {
+  color: #fff !important;
   background: #1a1816 !important;
   border: none !important;
   border-color: transparent !important;
@@ -332,10 +341,44 @@ a.article-meta__tags:hover {
   cursor: default;
 }
 
+[data-theme="dark"] #pagination:not(.pagination-post) .page-number,
+[data-theme="dark"] #pagination:not(.pagination-post) a.extend,
+[data-theme="dark"] .archive-page-section-pagination .archive-page-number,
+[data-theme="dark"] .archive-page-section-pagination .archive-page-extend {
+  background: rgba(42, 40, 38, 0.88) !important;
+  color: var(--milk-ink) !important;
+}
+
 [data-theme="dark"] #pagination:not(.pagination-post) .page-number.current,
-[data-theme="dark"] #pagination:not(.pagination-post) .page-number.current:hover {
+[data-theme="dark"] #pagination:not(.pagination-post) .page-number.current:hover,
+[data-theme="dark"] .archive-page-section-pagination .archive-page-number.is-current,
+[data-theme="dark"] .archive-page-section-pagination .archive-page-number.is-current:hover {
   color: #1a1816 !important;
   background: #f4efe8 !important;
+}
+
+/* Inner pages (#page / #tag / archives): match home card cleanliness */
+#page,
+#tag,
+#category,
+.archive-page-shell,
+.article-sort,
+.article-sort-title {
+  --efu-card-bg: #fff;
+  --efu-secondbg: #f7f7f7;
+}
+
+#page,
+.archive-page-shell {
+  background: #fff !important;
+  border-color: rgba(26, 24, 22, 0.06) !important;
+  box-shadow: 0 8px 24px rgba(20, 24, 32, 0.04) !important;
+}
+
+.archive-page-item:hover,
+.article-sort-item:hover {
+  border-color: transparent !important;
+  box-shadow: 0 10px 24px rgba(20, 24, 32, 0.08) !important;
 }
 
 /* Post cards: hover lifts without theme border */
