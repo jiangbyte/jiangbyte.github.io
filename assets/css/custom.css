@@ -79,7 +79,7 @@
   position: relative;
   z-index: 2;
   margin-left: auto;
-  background: rgba(255, 255, 255, 0.55) !important;
+  background: var(--milk-glass) !important;
   backdrop-filter: blur(22px) saturate(1.4);
   -webkit-backdrop-filter: blur(22px) saturate(1.4);
   border-left: 1px solid rgba(255, 255, 255, 0.55);
@@ -87,6 +87,13 @@
     inset 1px 0 0 rgba(255, 255, 255, 0.35),
     -8px 0 28px rgba(20, 24, 32, 0.08);
   transition: background-color 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+[data-theme="dark"] .home-center-right {
+  border-left-color: rgba(244, 239, 232, 0.12);
+  box-shadow:
+    inset 1px 0 0 rgba(244, 239, 232, 0.08),
+    -8px 0 28px rgba(0, 0, 0, 0.35);
 }
 
 .home-center-item {
@@ -102,15 +109,29 @@
   box-shadow: 0 1px 10px rgba(20, 24, 32, 0.06);
 }
 
+[data-theme="dark"] .home-center-item {
+  background: rgba(244, 239, 232, 0.08);
+}
+
+[data-theme="dark"] .home-center-item:hover {
+  background: rgba(244, 239, 232, 0.16);
+}
+
+[data-theme="dark"] .home-center-item.active {
+  background: rgba(244, 239, 232, 0.22);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+}
+
 .home-center-item-title a,
 .home-center-item-title a:hover,
 .home-center-item-title a:focus-visible {
-  color: rgba(28, 32, 40, 0.88) !important;
-  opacity: 1;
+  color: var(--milk-ink) !important;
+  opacity: 0.88;
 }
 
 .home-center-item.active .home-center-item-title a {
-  color: rgba(18, 22, 30, 0.96) !important;
+  color: var(--milk-ink) !important;
+  opacity: 1;
   font-weight: 600;
 }
 
@@ -172,12 +193,21 @@
   --efu-blue: #e8e0d4;
   --efu-theme: #e8e0d4;
   --efu-main: #e8e0d4;
+  --efu-theme-op: color-mix(in srgb, #e8e0d4 14%, transparent);
+  --efu-theme-op-deep: color-mix(in srgb, #e8e0d4 82%, transparent);
+  --efu-theme-op-light: color-mix(in srgb, #e8e0d4 5%, transparent);
+  --efu-main-op: var(--efu-theme-op);
+  --efu-main-op-deep: var(--efu-theme-op-deep);
+  --efu-main-op-light: var(--efu-theme-op-light);
   --efu-fontcolor: #f4efe8;
   --efu-secondtext: rgba(244, 239, 232, 0.72);
   --efu-lighttext: #f4efe8;
   --efu-hovertext: #ffffff;
-  --efu-card-bg: rgba(28, 27, 25, 0.92);
-  --efu-card-border: rgba(244, 239, 232, 0.1);
+  --efu-card-bg: #1b1c20;
+  --efu-card-border: rgba(244, 239, 232, 0.12);
+  --efu-background: #18171d;
+  --efu-secondbg: #30343f;
+  --efu-ahoverbg: rgba(244, 239, 232, 0.08);
   --milk-glass: rgba(36, 34, 32, 0.72);
   --milk-glass-strong: rgba(42, 40, 38, 0.88);
   --milk-ink: #f4efe8;
@@ -238,16 +268,20 @@
 #article-container h4,
 #article-container h5,
 #article-container h6,
-.post-title,
 .article-title {
   color: var(--efu-fontcolor) !important;
   font-weight: 700;
 }
 
+/* Cover hero title: match meta pills (white), not body ink */
+.post #page-header.post-bg #post-info .post-title {
+  color: var(--efu-white, #fff) !important;
+}
+
 /* Nav / menu hover → frosted milk, not solid theme fill */
 #nav .menus_items .menus_item:hover > .site-page,
-#page-header #nav a:hover,
-#page-header.not-top-img #nav a:hover,
+#page-header #nav #menus a:hover,
+#page-header.not-top-img #nav #menus a:hover,
 #nav #site-name:hover,
 #nav .back-home-button:hover,
 #nav #page-name-text:hover {
@@ -261,8 +295,50 @@
 #nav #site-name:hover i,
 #nav #site-name:hover span,
 #nav #site-name:hover img,
+#page-header #nav #menus a:hover span.solitude {
+  color: var(--milk-ink) !important;
+  opacity: 1 !important;
+}
+
+/* Right-rail icons: keep ink visible on hover (fix white-on-white / dark-on-dark) */
+#page-header #nav #nav-right .nav-button a:hover,
+#page-header #nav #nav-right .nav-button a:focus-visible {
+  background: var(--efu-ahoverbg) !important;
+  color: var(--milk-ink) !important;
+  box-shadow: none !important;
+}
+
+#page-header #nav #nav-right .nav-button a:hover span.solitude,
+#page-header #nav #nav-right .nav-button a:focus-visible span.solitude,
 #page-header #nav a:hover span.solitude {
   color: var(--milk-ink) !important;
+  opacity: 1 !important;
+}
+
+/* Console bars use background (not text color) */
+#page-header #nav #nav-right .nav-button a.console_switchbutton label i,
+#page-header #nav #nav-right .nav-button a.console_switchbutton:hover label i,
+#page-header #nav #nav-right .nav-button a.console_switchbutton:focus-visible label i {
+  background: var(--milk-ink) !important;
+}
+
+/* Post cover (nav not fixed): icons stay light on dark hero */
+.post #page-header:not(.nav-fixed) #nav #nav-right .nav-button a:hover,
+.post #page-header:not(.nav-fixed) #nav #nav-right .nav-button a:focus-visible {
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: var(--efu-white) !important;
+}
+
+.post #page-header:not(.nav-fixed) #nav #nav-right .nav-button a:hover span.solitude,
+.post #page-header:not(.nav-fixed) #nav #nav-right .nav-button a:focus-visible span.solitude {
+  color: var(--efu-white) !important;
+  opacity: 1 !important;
+}
+
+.post #page-header:not(.nav-fixed) #nav #nav-right .nav-button a.console_switchbutton label i,
+.post #page-header:not(.nav-fixed) #nav #nav-right .nav-button a.console_switchbutton:hover label i,
+.post #page-header:not(.nav-fixed) #nav #nav-right .nav-button a.console_switchbutton:focus-visible label i {
+  background: var(--efu-white) !important;
 }
 
 #nav .menus_items .menus_item:hover .menus_item_child {
@@ -311,7 +387,7 @@ a.article-meta__tags:hover {
 .archive-page-section-pagination .archive-page-extend {
   border: none !important;
   border-color: transparent !important;
-  background: #fff !important;
+  background: var(--efu-card-bg) !important;
   color: var(--milk-ink) !important;
   box-shadow: 0 2px 8px rgba(20, 24, 32, 0.05) !important;
 }
@@ -321,7 +397,7 @@ a.article-meta__tags:hover {
 .archive-page-section-pagination .archive-page-number:hover,
 .archive-page-section-pagination .archive-page-extend:hover:not(:disabled) {
   color: var(--milk-ink) !important;
-  background: rgba(255, 255, 255, 0.92) !important;
+  background: var(--milk-glass-strong) !important;
   border: none !important;
   border-color: transparent !important;
   box-shadow: 0 4px 14px rgba(20, 24, 32, 0.08) !important;
@@ -333,45 +409,19 @@ a.article-meta__tags:hover {
 #pagination:not(.pagination-post) .page-number.current:hover,
 .archive-page-section-pagination .archive-page-number.is-current,
 .archive-page-section-pagination .archive-page-number.is-current:hover {
-  color: #fff !important;
-  background: #1a1816 !important;
+  color: var(--efu-card-bg) !important;
+  background: var(--milk-ink) !important;
   border: none !important;
   border-color: transparent !important;
   box-shadow: 0 6px 16px rgba(26, 24, 22, 0.22) !important;
   cursor: default;
 }
 
-[data-theme="dark"] #pagination:not(.pagination-post) .page-number,
-[data-theme="dark"] #pagination:not(.pagination-post) a.extend,
-[data-theme="dark"] .archive-page-section-pagination .archive-page-number,
-[data-theme="dark"] .archive-page-section-pagination .archive-page-extend {
-  background: rgba(42, 40, 38, 0.88) !important;
-  color: var(--milk-ink) !important;
-}
-
-[data-theme="dark"] #pagination:not(.pagination-post) .page-number.current,
-[data-theme="dark"] #pagination:not(.pagination-post) .page-number.current:hover,
-[data-theme="dark"] .archive-page-section-pagination .archive-page-number.is-current,
-[data-theme="dark"] .archive-page-section-pagination .archive-page-number.is-current:hover {
-  color: #1a1816 !important;
-  background: #f4efe8 !important;
-}
-
-/* Inner pages (#page / #tag / archives): match home card cleanliness */
-#page,
-#tag,
-#category,
-.archive-page-shell,
-.article-sort,
-.article-sort-title {
-  --efu-card-bg: #fff;
-  --efu-secondbg: #f7f7f7;
-}
-
+/* Inner pages (#page / archives): follow theme card surface */
 #page,
 .archive-page-shell {
-  background: #fff !important;
-  border-color: rgba(26, 24, 22, 0.06) !important;
+  background: var(--efu-card-bg) !important;
+  border-color: var(--efu-card-border) !important;
   box-shadow: 0 8px 24px rgba(20, 24, 32, 0.04) !important;
 }
 
@@ -381,15 +431,24 @@ a.article-meta__tags:hover {
   box-shadow: 0 10px 24px rgba(20, 24, 32, 0.08) !important;
 }
 
-/* Post cards: hover lifts without theme border */
+/* Post cards: no border at rest or hover (override Solitude --style-border-hover) */
+#recent-posts .recent-post-item,
 .recent-post-item {
-  border: 1px solid rgba(26, 24, 22, 0.06) !important;
-  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  --style-border: none;
+  --style-border-hover: none;
+  --style-border-always: none;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 2px 10px rgba(20, 24, 32, 0.05);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.recent-post-item:hover {
-  border: 1px solid transparent !important;
-  border-color: transparent !important;
+#recent-posts .recent-post-item:hover,
+#recent-posts .recent-post-item:focus-within,
+.recent-post-item:hover,
+.recent-post-item:focus-within {
+  border: none !important;
+  outline: none !important;
   box-shadow: 0 14px 32px rgba(20, 24, 32, 0.12) !important;
   transform: translateY(-2px);
 }
@@ -404,26 +463,67 @@ a.article-meta__tags:hover {
 #post-comment .comment-head .comment-headline,
 .btn-beautify:hover,
 button.btn-beautify:hover {
-  --efu-main: #4f4a45;
+  --efu-main: var(--efu-theme);
 }
 
 .layout a:hover {
   border-color: transparent !important;
 }
 
-[data-theme="dark"] .btn-beautify:hover {
-  --efu-main: #e8e0d4;
-}
-
-/* Rightside / console / totop hover glass */
+/* Rightside / console hover glass (totop handled separately) */
 #rightside > div > button:hover,
-#console .console-btn-item:hover,
-#nav-totop:hover .totopbtn {
+#console .console-btn-item:hover {
   background: var(--milk-glass) !important;
   color: var(--milk-ink) !important;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 4px 14px rgba(20, 24, 32, 0.08);
+}
+
+/* Back-to-top: ink disc + contrasting glyph; keep theme show/hide (percent ↔ arrow) */
+#page-header #nav #nav-right #nav-totop a.totopbtn {
+  background: var(--milk-ink) !important;
+  color: var(--efu-background) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  transform: none !important;
+}
+
+#page-header #nav #nav-right #nav-totop a.totopbtn i {
+  color: var(--efu-background) !important;
+  /* do NOT force opacity — theme hides arrow until hover */
+}
+
+#page-header #nav #nav-right #nav-totop:hover a.totopbtn,
+#nav-totop:hover .totopbtn {
+  background: var(--milk-ink) !important;
+  color: var(--efu-background) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  transform: none !important;
+}
+
+#page-header #nav #nav-right #nav-totop:hover a.totopbtn i,
+#nav-totop:hover .totopbtn i,
+[data-theme="dark"] #nav-totop:hover .totopbtn i {
+  color: var(--efu-background) !important;
+  opacity: 1 !important;
+}
+
+/* Cover hero: light disc; arrow still only on hover */
+.post #page-header:not(.nav-fixed) #nav #nav-right #nav-totop a.totopbtn,
+.post #page-header:not(.nav-fixed) #nav #nav-right #nav-totop:hover a.totopbtn {
+  background: var(--efu-white) !important;
+  color: #1a1816 !important;
+}
+
+.post #page-header:not(.nav-fixed) #nav #nav-right #nav-totop a.totopbtn i {
+  color: #1a1816 !important;
+}
+
+.post #page-header:not(.nav-fixed) #nav #nav-right #nav-totop:hover a.totopbtn i {
+  color: #1a1816 !important;
+  opacity: 1 !important;
 }
 
 /* Selection + focus ring in warm stone */
@@ -516,4 +616,349 @@ button:focus-visible {
   background: #e8e0d4 !important;
   color: #1a1816 !important;
 }
+
+/* —— Code blocks: Juejin-like Chroma highlight —— */
+:root {
+  --code-inline-bg: rgba(27, 31, 35, 0.05);
+  --code-inline-color: #c7254e;
+  --code-block-surface: #f6f8fa;
+  --code-block-border: rgba(27, 31, 35, 0.08);
+  --code-line-hl: rgba(255, 200, 0, 0.18);
+  --code-line-num: #8b949e;
+  --chroma-fg: #24292f;
+  --chroma-comment: #6e7781;
+  --chroma-keyword: #cf222e;
+  --chroma-string: #0a3069;
+  --chroma-literal: #0550ae;
+  --chroma-name: #8250df;
+  --chroma-func: #8250df;
+  --chroma-builtin: #953800;
+  --chroma-class: #116329;
+  --chroma-attr: #0550ae;
+  --chroma-operator: #24292f;
+  --chroma-punctuation: #24292f;
+}
+
+[data-theme="dark"] {
+  --code-inline-bg: rgba(110, 118, 129, 0.22);
+  --code-inline-color: #ff7b72;
+  --code-block-surface: #161b22;
+  --code-block-border: rgba(240, 246, 252, 0.1);
+  --code-line-hl: rgba(210, 153, 34, 0.22);
+  --code-line-num: #6e7681;
+  --chroma-fg: #e6edf3;
+  --chroma-comment: #8b949e;
+  --chroma-keyword: #ff7b72;
+  --chroma-string: #a5d6ff;
+  --chroma-literal: #79c0ff;
+  --chroma-name: #d2a8ff;
+  --chroma-func: #d2a8ff;
+  --chroma-builtin: #ffa657;
+  --chroma-class: #7ee787;
+  --chroma-attr: #79c0ff;
+  --chroma-operator: #e6edf3;
+  --chroma-punctuation: #e6edf3;
+}
+
+/* Inline code — soft rose chip (掘金) */
+.article-container :not(pre) > code,
+.article-container p code,
+.article-container li code,
+.article-container td code,
+.article-container th code {
+  padding: 0.15em 0.4em !important;
+  border: none !important;
+  border-radius: 4px !important;
+  background: var(--code-inline-bg) !important;
+  box-shadow: none !important;
+  color: var(--code-inline-color) !important;
+  font-size: 0.875em !important;
+  font-family: var(--efu-code-font-family, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  word-break: break-word;
+}
+
+.code-block.code-block--chroma {
+  --code-block-bg: var(--code-block-surface);
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.code-block.code-block--chroma .code-block__toolbar {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: auto;
+  min-height: 36px;
+  padding: 0 14px;
+  pointer-events: auto;
+  background: var(--code-block-surface);
+  border-bottom: 1px solid var(--code-block-border);
+}
+
+.code-block.code-block--chroma .code-block__language {
+  flex: 0 1 auto;
+  height: auto;
+  margin: 0;
+  color: var(--code-line-num);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  opacity: 1;
+  text-transform: lowercase;
+  transform: none;
+  transition: none;
+}
+
+.code-block.code-block--chroma .code-block__copy {
+  position: static;
+  top: auto;
+  right: auto;
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 4px 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--code-line-num);
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.75;
+  pointer-events: auto;
+}
+
+.code-block.code-block--chroma:hover .code-block__language,
+.code-block.code-block--chroma:focus-within .code-block__language {
+  opacity: 1;
+}
+
+.code-block.code-block--chroma:hover .code-block__copy,
+.code-block.code-block--chroma:focus-within .code-block__copy,
+.code-block.code-block--chroma .code-block__copy:hover,
+.code-block.code-block--chroma .code-block__copy:focus-visible {
+  opacity: 1;
+  color: var(--chroma-fg);
+}
+
+@media (hover: none) {
+  .code-block.code-block--chroma .code-block__language,
+  .code-block.code-block--chroma .code-block__copy {
+    opacity: 0.85;
+  }
+}
+
+.code-block.code-block--chroma .code-block__viewport {
+  background: var(--code-block-surface);
+}
+
+.code-block.code-block--chroma .highlight {
+  margin: 0;
+  background: transparent;
+}
+
+.code-block.code-block--chroma .chroma,
+.code-block.code-block--chroma .code-block__viewport > pre {
+  margin: 0;
+  padding: 12px 16px;
+  overflow-x: auto;
+  background: transparent !important;
+  color: var(--chroma-fg);
+  font-family: var(--efu-code-font-family, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: 0.85em;
+  line-height: 1.65;
+  tab-size: 4;
+}
+
+.code-block.code-block--chroma .chroma code,
+.code-block.code-block--chroma .code-block__viewport > pre code {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  padding: 0;
+  background: transparent !important;
+  color: inherit;
+  font: inherit;
+  border: 0;
+  box-shadow: none;
+}
+
+/* Line + range highlight (hl_lines) */
+.code-block.code-block--chroma .chroma .line {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  padding: 0 12px;
+  margin: 0 -12px;
+  box-sizing: border-box;
+}
+
+.code-block.code-block--chroma .chroma .line.hl,
+.code-block.code-block--chroma .chroma .hl {
+  background: var(--code-line-hl);
+  box-shadow: inset 3px 0 0 #f2cc60;
+}
+
+.code-block.code-block--chroma .chroma .ln,
+.code-block.code-block--chroma .chroma .lnt {
+  display: inline-block;
+  min-width: 2.2em;
+  margin-right: 1em;
+  padding-right: 0.75em;
+  border-right: 1px solid var(--code-block-border);
+  color: var(--code-line-num) !important;
+  text-align: right;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.code-block.code-block--chroma .chroma .cl {
+  display: inline;
+}
+
+/* Token colors (override Chroma github style for consistent 掘金-like light/dark) */
+.code-block.code-block--chroma .chroma .c,
+.code-block.code-block--chroma .chroma .ch,
+.code-block.code-block--chroma .chroma .cm,
+.code-block.code-block--chroma .chroma .c1,
+.code-block.code-block--chroma .chroma .cs,
+.code-block.code-block--chroma .chroma .cp,
+.code-block.code-block--chroma .chroma .cpf {
+  color: var(--chroma-comment);
+  font-style: italic;
+}
+
+.code-block.code-block--chroma .chroma .k,
+.code-block.code-block--chroma .chroma .kc,
+.code-block.code-block--chroma .chroma .kd,
+.code-block.code-block--chroma .chroma .kn,
+.code-block.code-block--chroma .chroma .kp,
+.code-block.code-block--chroma .chroma .kr,
+.code-block.code-block--chroma .chroma .kt {
+  color: var(--chroma-keyword);
+  font-weight: 600;
+}
+
+.code-block.code-block--chroma .chroma .s,
+.code-block.code-block--chroma .chroma .sa,
+.code-block.code-block--chroma .chroma .sb,
+.code-block.code-block--chroma .chroma .sc,
+.code-block.code-block--chroma .chroma .dl,
+.code-block.code-block--chroma .chroma .sd,
+.code-block.code-block--chroma .chroma .s2,
+.code-block.code-block--chroma .chroma .se,
+.code-block.code-block--chroma .chroma .sh,
+.code-block.code-block--chroma .chroma .si,
+.code-block.code-block--chroma .chroma .sx,
+.code-block.code-block--chroma .chroma .sr,
+.code-block.code-block--chroma .chroma .s1,
+.code-block.code-block--chroma .chroma .ss {
+  color: var(--chroma-string);
+}
+
+.code-block.code-block--chroma .chroma .m,
+.code-block.code-block--chroma .chroma .mb,
+.code-block.code-block--chroma .chroma .mf,
+.code-block.code-block--chroma .chroma .mh,
+.code-block.code-block--chroma .chroma .mi,
+.code-block.code-block--chroma .chroma .il,
+.code-block.code-block--chroma .chroma .mo,
+.code-block.code-block--chroma .chroma .l,
+.code-block.code-block--chroma .chroma .ld {
+  color: var(--chroma-literal);
+}
+
+.code-block.code-block--chroma .chroma .na {
+  color: var(--chroma-attr);
+}
+
+.code-block.code-block--chroma .chroma .nb,
+.code-block.code-block--chroma .chroma .bp {
+  color: var(--chroma-builtin);
+}
+
+.code-block.code-block--chroma .chroma .nc,
+.code-block.code-block--chroma .chroma .nn {
+  color: var(--chroma-class);
+}
+
+.code-block.code-block--chroma .chroma .nf,
+.code-block.code-block--chroma .chroma .fm {
+  color: var(--chroma-func);
+}
+
+.code-block.code-block--chroma .chroma .n,
+.code-block.code-block--chroma .chroma .nv,
+.code-block.code-block--chroma .chroma .vc,
+.code-block.code-block--chroma .chroma .vg,
+.code-block.code-block--chroma .chroma .vi,
+.code-block.code-block--chroma .chroma .vm,
+.code-block.code-block--chroma .chroma .nx {
+  color: var(--chroma-fg);
+}
+
+.code-block.code-block--chroma .chroma .o,
+.code-block.code-block--chroma .chroma .ow {
+  color: var(--chroma-operator);
+}
+
+.code-block.code-block--chroma .chroma .p {
+  color: var(--chroma-punctuation);
+}
+
+.code-block.code-block--chroma .code-block__expand {
+  background: linear-gradient(to bottom, transparent, var(--code-block-surface) 72%);
+}
+
+@media (max-width: 768px) {
+  .code-block.code-block--chroma .chroma,
+  .code-block.code-block--chroma .code-block__viewport > pre {
+    padding: 12px;
+  }
+}
+
+/* Related posts: no border at rest or hover */
+.relatedPosts .relatedPosts-item,
+.relatedPosts > .relatedPosts-list > .relatedPosts-item:hover,
+.relatedPosts > .relatedPosts-list > .relatedPosts-item:focus-within {
+  border: none !important;
+  outline: none !important;
+  --style-border: none;
+  --style-border-hover: none;
+}
+
+.relatedPosts > .relatedPosts-list > .relatedPosts-item:hover,
+.relatedPosts > .relatedPosts-list > .relatedPosts-item:focus-within {
+  box-shadow: 0 10px 24px rgba(20, 24, 32, 0.1) !important;
+}
+
+.relatedPosts > .relatedPosts-list > .relatedPosts-item:hover .title,
+.relatedPosts > .relatedPosts-list > .relatedPosts-item:focus-within .title {
+  color: var(--efu-fontcolor) !important;
+}
+
+/* Inline code: kill theme border/shadow leftovers */
+.article-container code:not([class*="language-"]),
+.article-container :not(pre) > code {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Ordered list badges: ink circle + contrasting digit (fixes dark white-on-white) */
+.article-container ol > li:before {
+  background: var(--milk-ink) !important;
+  color: var(--efu-background) !important;
+}
+
+.article-container ul > li:not(.tab):before {
+  border-color: var(--milk-ink) !important;
+  background: transparent !important;
+}
+
 

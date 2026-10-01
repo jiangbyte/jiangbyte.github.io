@@ -1,0 +1,37 @@
+{{- /*
+  Build-time Chroma highlight (reliable vs CDN Shiki).
+  Keeps Solitude toolbar + copy via hidden .code-block__fallback.
+  Fence options: {hl_lines=[2,"4-6"] linenos=inline}
+  Do NOT merge .Options into the override map — that corrupts hl_lines.
+*/ -}}
+{{- $highlight := site.Params.solitude.highlight | default dict -}}
+{{- $language := .Type | default "text" -}}
+{{- $wantLineNos := ne $highlight.line_numbers false -}}
+{{- with index .Options "lineNos" -}}
+  {{- $wantLineNos = . -}}
+{{- else -}}
+  {{- with index .Options "linenos" -}}
+    {{- $wantLineNos = . -}}
+  {{- end -}}
+{{- end -}}
+{{- $result := transform.HighlightCodeBlock . (dict
+  "lineNos" $wantLineNos
+  "lineNumbersInTable" false
+) -}}
+<figure
+  class="code-block code-block--chroma{{ if $wantLineNos }} code-block--line-numbers{{ end }}"
+  data-code-block
+  data-language="{{ $language }}"
+>
+  <figcaption class="code-block__toolbar">
+    <span class="code-block__language">{{ $language }}</span>
+    {{- if ne $highlight.copy false }}
+      <button class="code-block__copy" type="button" data-code-copy>{{ i18n "codeCopy" }}</button>
+    {{- end }}
+  </figcaption>
+  <div class="code-block__viewport">
+    {{ $result.Wrapped }}
+  </div>
+  <pre class="code-block__fallback" hidden aria-hidden="true"><code class="language-{{ $language }}">{{ .Inner | htmlEscape | safeHTML }}</code></pre>
+  <button class="code-block__expand" type="button" data-code-expand hidden>{{ i18n "codeExpand" }}</button>
+</figure>

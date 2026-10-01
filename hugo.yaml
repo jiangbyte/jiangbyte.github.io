@@ -7,6 +7,20 @@ enableRobotsTXT: true
 enableGitInfo: false
 theme: solitude
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    lineNos: true
+    lineNumbersInTable: false
+    style: github
+    tabWidth: 4
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+
 uglyURLs:
   posts: true
 
@@ -239,7 +253,8 @@ params:
           key: H
           url: ./
     highlight:
-      enable: true
+      # Chroma at build time (layouts/_markup/render-codeblock.html); skip CDN Shiki
+      enable: false
       copy: true
       line_numbers: true
       max_height: 360
