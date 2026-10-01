@@ -1,0 +1,57 @@
+/* —— Immersive post cover: full-bleed cover image —— */
+.post #page-header.post-bg.post-bg--immersive {
+  background-image: var(--post-cover-url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.post #page-header.post-bg.post-bg--immersive::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.28) 0%,
+    rgba(0, 0, 0, 0.42) 45%,
+    rgba(0, 0, 0, 0.62) 100%
+  );
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .post #page-header.post-bg.post-bg--immersive {
+    background-color: transparent !important;
+    background-image: var(--post-cover-url) !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+  .post #page-header.post-bg.post-bg--immersive::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      transparent 40%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+}
+
+/* —— Aside info card: optional image background —— */
+.card-info.card-info--has-bg::before {
+  background: var(--card-info-bg) center / cover no-repeat;
+}
+
+.card-info.card-info--has-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card-info.card-info--has-bg .card-content {
+  position: relative;
+  z-index: 1;
+}
