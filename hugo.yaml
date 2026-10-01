@@ -215,6 +215,10 @@ params:
       enable: false
     music:
       enable: false
+    errorpage:
+      img: https://avatars.githubusercontent.com/u/116237950?v=4
+      text: 页面走丢了，回首页看看吧
+      recommendList: true
     keyboard:
       enable: true
       list:

@@ -435,3 +435,85 @@ a:focus-visible,
 button:focus-visible {
   outline-color: color-mix(in srgb, var(--efu-theme) 55%, transparent);
 }
+
+/* —— 404 / error: override Solitude’s hardcoded blue (#3498db) —— */
+#body-wrap.error {
+  --efu-theme: #1a1816 !important;
+  --efu-main: #1a1816 !important;
+  --efu-theme-op: rgba(26, 24, 22, 0.12) !important;
+  --efu-theme-op-deep: rgba(26, 24, 22, 0.87) !important;
+  --efu-theme-none: transparent !important;
+  --btn-bg: #1a1816 !important;
+  --btn-color: #fff !important;
+  background: #fff !important;
+}
+
+#body-wrap.error #error-wrap .error-content {
+  background: #fff !important;
+  border: 1px solid rgba(26, 24, 22, 0.06) !important;
+  box-shadow: 0 14px 36px rgba(20, 24, 32, 0.08) !important;
+  overflow: hidden;
+}
+
+#body-wrap.error #error-wrap .error-content .error-img {
+  background-color: #1a1816 !important;
+  background-size: 42% !important;
+  background-repeat: no-repeat !important;
+}
+
+#body-wrap.error #error-wrap .error-content .error-info .error_title,
+#body-wrap.error #error-wrap .error-content .error-info .error_subtitle {
+  color: #1a1816 !important;
+}
+
+#body-wrap.error #error-wrap .error-content .error-info a.button--animated,
+#body-wrap.error #error-wrap .error-content .error-info a {
+  background: #1a1816 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 0.55rem 1.45rem !important;
+  box-shadow: 0 6px 16px rgba(26, 24, 22, 0.18);
+}
+
+#body-wrap.error #error-wrap .error-content .error-info a:hover,
+#body-wrap.error #error-wrap .error-content .error-info a:focus-visible {
+  background: #2a2825 !important;
+  border: none !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(26, 24, 22, 0.22);
+}
+
+#body-wrap.error .aside-list .aside-list-item {
+  border: 1px solid rgba(26, 24, 22, 0.06) !important;
+  background: #fff !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#body-wrap.error .aside-list .aside-list-item:hover {
+  border-color: transparent !important;
+  box-shadow: 0 10px 24px rgba(20, 24, 32, 0.1) !important;
+}
+
+#body-wrap.error .aside-list .aside-list-item .content .title {
+  color: #1a1816 !important;
+}
+
+[data-theme="dark"] #body-wrap.error {
+  background: var(--efu-background) !important;
+  --efu-theme: #e8e0d4 !important;
+  --efu-main: #e8e0d4 !important;
+  --btn-bg: #e8e0d4 !important;
+  --btn-color: #1a1816 !important;
+}
+
+[data-theme="dark"] #body-wrap.error #error-wrap .error-content {
+  background: var(--efu-card-bg) !important;
+}
+
+[data-theme="dark"] #body-wrap.error #error-wrap .error-content .error-info a {
+  background: #e8e0d4 !important;
+  color: #1a1816 !important;
+}
+
