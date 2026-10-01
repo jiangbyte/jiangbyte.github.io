@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>封面审核 · ycy</title>
+<style>
+  :root {
+    --bg: #12141a;
+    --panel: #1b1f2a;
+    --line: #2c3344;
+    --text: #e8ecf4;
+    --muted: #93a0b8;
+    --ok: #3d9a6a;
+    --ok-bg: #1a3a2a;
+    --drop: #8b4a4a;
+    --accent: #5b8def;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+    background: var(--bg); color: var(--text);
+  }
+  header {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    padding: 12px 16px; background: rgba(18,20,26,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  header h1 { font-size: 16px; margin: 0 12px 0 0; font-weight: 600; }
+  header .meta { color: var(--muted); font-size: 13px; margin-right: auto; }
+  button, .btn {
+    appearance: none; border: 1px solid var(--line); background: var(--panel);
+    color: var(--text); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 13px;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.danger { border-color: #6e3a3a; color: #f0b4b4; }
+  button.ok { border-color: var(--ok); color: #b7efcf; }
+  main {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px; padding: 16px;
+  }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .card.kept { border-color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok); }
+  .card.dropped { opacity: .35; filter: grayscale(.7); }
+  .thumb {
+    aspect-ratio: 16/10; background: #0c0e14; display: grid; place-items: center; overflow: hidden;
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb .err { color: var(--muted); font-size: 12px; padding: 12px; text-align: center; }
+  .body { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+  .url {
+    font-size: 11px; color: var(--muted); word-break: break-all; line-height: 1.35;
+    min-height: 2.7em;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 6px; }
+  .actions button { flex: 1; min-width: 64px; padding: 7px 8px; }
+  .badge {
+    align-self: flex-start; font-size: 11px; padding: 2px 8px; border-radius: 999px;
+    background: #2a3142; color: var(--muted);
+  }
+  .card.kept .badge { background: var(--ok-bg); color: #9fe0bc; }
+  dialog {
+    border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--text);
+    width: min(720px, 92vw); padding: 0;
+  }
+  dialog::backdrop { background: rgba(0,0,0,.55); }
+  dialog .dlg { padding: 16px; }
+  dialog h2 { margin: 0 0 10px; font-size: 15px; }
+  dialog textarea {
+    width: 100%; height: 320px; resize: vertical; background: #0f1218; color: var(--text);
+    border: 1px solid var(--line); border-radius: 8px; padding: 10px; font-family: ui-monospace, monospace; font-size: 12px;
+  }
+  dialog .row { display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end; }
+  .hint { color: var(--muted); font-size: 12px; margin-top: 6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>封面审核</h1>
+  <div class="meta" id="meta">加载中…</div>
+  <button type="button" id="btnAdd">+ 抽一张新图</button>
+  <button type="button" id="btnKeepAll">全部留下</button>
+  <button type="button" id="btnClearKeep">清空确认</button>
+  <button type="button" class="primary" id="btnCopy">复制已确认数组</button>
+</header>
+<main id="grid"></main>
+
+<dialog id="dlg">
+  <div class="dlg">
+    <h2>已确认封面数组（直接复制）</h2>
+    <textarea id="out" readonly></textarea>
+    <p class="hint">数组每一项都是稳定直链；需要换图时在卡片上点「换一张」（会请求 https://t.alcy.cc/ycy 解析新直链）。</p>
+    <div class="row">
+      <button type="button" id="btnYaml">复制 YAML 列表</button>
+      <button type="button" class="primary" id="btnCopyDlg">再复制一次</button>
+      <button type="button" id="btnClose">关闭</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const YCY = "https://t.alcy.cc/ycy";
+const INITIAL = [
+  "https://t.alcy.cc/pic/pc/11203ff07c6e01317b8bb08ee6814a8e_cde8cc.webp",
+  "https://t.alcy.cc/pic/pc/2025-10-38efe905569baa831760180f86f433ce.webp",
+  "https://t.alcy.cc/pic/pc/2025-10-5dd032f4e704e3d2956476bc7eafef7f.webp",
+  "https://t.alcy.cc/pic/pc/2025-10-894204114a20079d919c9035f567acb1.webp",
+  "https://t.alcy.cc/pic/pc/2025-10-b6c47683362113669c8d6b037b45a19d.webp",
+  "https://t.alcy.cc/pic/pc/2025-10-d9681d46c56ca3a41d5838d7d0af61ab.webp",
+  "https://t.alcy.cc/pic/pc/2025-11-6f7a5545758f27b6d3defe1be03830ce.webp",
+  "https://t.alcy.cc/pic/pc/2025-12-18-0ad59fd83e56b4d7bfd1354053933b75.webp",
+  "https://t.alcy.cc/pic/pc/2025-12-18-451d16129ce2ab4ffa4576d186c909dd.webp",
+  "https://t.alcy.cc/pic/pc/2025-12-18-8081a888264a95cefb62643036d02b9c.webp",
+  "https://t.alcy.cc/pic/pc/2025-12-18-c10cf3704d308bbeba871eb0d0dfb653.webp",
+  "https://t.alcy.cc/pic/pc/2025-12-18-c203e6a4e13f3b90651ef6d7ae7df1e4.webp",
+  "https://t.alcy.cc/pic/pc/2025-12-244877eb3b28473eb63ca9fd66be5146.webp",
+  "https://t.alcy.cc/pic/pc/2026-02-15-15b3912819b0d689709ecd139a22a89f.webp",
+  "https://t.alcy.cc/pic/pc/2026-04-03-eb11cb3c33b2d6d7f41d9d7da1c5d8a6.webp",
+  "https://t.alcy.cc/pic/pc/369.webp",
+  "https://t.alcy.cc/pic/pc/372.webp",
+  "https://t.alcy.cc/pic/pc/380.webp",
+  "https://t.alcy.cc/pic/pc/388.webp",
+  "https://t.alcy.cc/pic/pc/465.webp",
+  "https://t.alcy.cc/pic/pc/480.webp",
+  "https://t.alcy.cc/pic/pc/550.webp",
+  "https://t.alcy.cc/pic/pc/56d271aed635e1e2621daf9eb2c9eec4.webp",
+  "https://t.alcy.cc/pic/pc/7c073ee2793294320c4d1b0132c8c5a4.webp",
+  "https://t.alcy.cc/pic/pc/538.webp",
+  "https://t.alcy.cc/pic/pc/441.webp",
+  "https://t.alcy.cc/pic/pc/365.webp",
+  "https://t.alcy.cc/pic/pc/420.webp",
+  "https://t.alcy.cc/pic/pc/539.webp",
+  "https://t.alcy.cc/pic/pc/11ae7b1f420937be19229d79918566de.webp",
+  "https://t.alcy.cc/pic/pc/517.webp",
+  "https://t.alcy.cc/pic/pc/395.webp",
+  "https://t.alcy.cc/pic/pc/image_20260323_130956_9.webp",
+  "https://t.alcy.cc/pic/pc/2025-10-34e1d7795581dbeacbd4cc2cfdabf6d3.webp",
+  "https://t.alcy.cc/pic/pc/468.webp",
+  "https://t.alcy.cc/pic/pc/19146a33f76cb8a0368677c64cbebd60.webp",
+  "https://t.alcy.cc/pic/pc/2025-10-6b8672e87b57cee58e29d03d7c446f4c.webp",
+  "https://t.alcy.cc/pic/pc/532.webp",
+  "https://t.alcy.cc/pic/pc/479.webp",
+  "https://t.alcy.cc/pic/pc/2025-12-18-c7d4de587cbc10656348762bd7e0a09a.webp",
+  "https://t.alcy.cc/pic/pc/2025-11-ab90936a7244b4c3f402d0565f5c0bbb.webp",
+  "https://t.alcy.cc/pic/pc/410.webp",
+  "https://t.alcy.cc/pic/pc/473.webp",
+  "https://t.alcy.cc/pic/pc/image_20260323_131030_26.webp",
+  "https://t.alcy.cc/pic/pc/2025-12-18-65d3f9561244460db1d375199fdf5304.webp",
+  "https://t.alcy.cc/pic/pc/2025-10-f1bcf4618cecf264bb2514f080442c0e.webp",
+  "https://t.alcy.cc/pic/pc/be2efdc16bea346d90dc20bbc3f3f192.webp",
+  "https://t.alcy.cc/pic/pc/2026-03-22-fdae8cbcc942d87b3f603841fdeb5ea7.webp"
+];
+
+/** @type {{id:number,url:string,kept:boolean,dropped:boolean,busy:boolean}[]} */
+let items = INITIAL.map((url, i) => ({ id: i + 1, url, kept: false, dropped: false, busy: false }));
+let seq = items.length;
+
+const grid = document.getElementById("grid");
+const meta = document.getElementById("meta");
+const dlg = document.getElementById("dlg");
+const out = document.getElementById("out");
+
+function keptUrls() {
+  return items.filter(x => x.kept && !x.dropped).map(x => x.url);
+}
+
+function updateMeta() {
+  const live = items.filter(x => !x.dropped).length;
+  const kept = keptUrls().length;
+  meta.textContent = `展示 ${live} 张 · 已确认 ${kept} 张 · 源 ${YCY}`;
+}
+
+async function resolveYcy() {
+  // 1) same-origin proxy (python scripts/cover-review-server.py)
+  try {
+    const r = await fetch("/api/ycy", { cache: "no-store" });
+    if (r.ok) {
+      const j = await r.json();
+      if (j && j.url) return j.url;
+    }
+  } catch (_) {}
+
+  // 2) direct (多数浏览器会因 CORS 失败)
+  try {
+    const r = await fetch(YCY, { redirect: "follow", cache: "no-store" });
+    if (r.ok && r.url && !r.url.endsWith("/ycy")) return r.url;
+  } catch (_) {}
+
+  // 3) 无 CORS 时：用图片探测拿不到最终 URL，改走本地小服务提示
+  throw new Error("无法在浏览器里直接解析 ycy 直链。请先运行：python3 scripts/cover-review-server.py 再打开提示的地址。");
+}
+
+function render() {
+  grid.innerHTML = "";
+  for (const item of items) {
+    if (item.dropped) continue;
+    const card = document.createElement("article");
+    card.className = "card" + (item.kept ? " kept" : "");
+    card.dataset.id = String(item.id);
+
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.alt = "cover " + item.id;
+    img.src = item.url + (item.url.includes("?") ? "&" : "?") + "v=" + item.id;
+    img.onerror = () => { thumb.innerHTML = '<div class="err">加载失败<br/>可点「换一张」</div>'; };
+    thumb.appendChild(img);
+
+    const body = document.createElement("div");
+    body.className = "body";
+    const badge = document.createElement("span");
+    badge.className = "badge";
+    badge.textContent = item.kept ? "已确认留下" : "待审核";
+    const urlEl = document.createElement("div");
+    urlEl.className = "url";
+    urlEl.textContent = item.url;
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const bKeep = document.createElement("button");
+    bKeep.type = "button";
+    bKeep.className = "ok";
+    bKeep.textContent = item.kept ? "取消留下" : "留下";
+    bKeep.onclick = () => { item.kept = !item.kept; render(); };
+
+    const bSwap = document.createElement("button");
+    bSwap.type = "button";
+    bSwap.textContent = item.busy ? "请求中…" : "换一张";
+    bSwap.disabled = !!item.busy;
+    bSwap.onclick = async () => {
+      item.busy = true; render();
+      try {
+        const url = await resolveYcy();
+        item.url = url;
+        item.kept = false;
+      } catch (e) {
+        alert(String(e.message || e));
+      } finally {
+        item.busy = false; render();
+      }
+    };
+
+    const bDrop = document.createElement("button");
+    bDrop.type = "button";
+    bDrop.className = "danger";
+    bDrop.textContent = "不要";
+    bDrop.onclick = () => { item.dropped = true; item.kept = false; render(); };
+
+    actions.append(bKeep, bSwap, bDrop);
+    body.append(badge, urlEl, actions);
+    card.append(thumb, body);
+    grid.appendChild(card);
+  }
+  updateMeta();
+}
+
+function formatArray(arr) {
+  return "[\n" + arr.map(u => "  \"" + u + "\"").join(",\n") + "\n]";
+}
+
+function formatYaml(arr) {
+  return "covers:\n" + arr.map(u => "  - " + u).join("\n") + "\n";
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (_) {
+    out.focus(); out.select();
+    try { document.execCommand("copy"); return true; } catch { return false; }
+  }
+}
+
+document.getElementById("btnAdd").onclick = async () => {
+  try {
+    const url = await resolveYcy();
+    seq += 1;
+    items.push({ id: seq, url, kept: false, dropped: false, busy: false });
+    render();
+  } catch (e) {
+    alert(String(e.message || e));
+  }
+};
+
+document.getElementById("btnKeepAll").onclick = () => {
+  for (const x of items) if (!x.dropped) x.kept = true;
+  render();
+};
+
+document.getElementById("btnClearKeep").onclick = () => {
+  for (const x of items) x.kept = false;
+  render();
+};
+
+document.getElementById("btnCopy").onclick = async () => {
+  const arr = keptUrls();
+  if (!arr.length) { alert("还没有确认留下的图片。点卡片上的「留下」。"); return; }
+  out.value = formatArray(arr);
+  dlg.showModal();
+  await copyText(out.value);
+};
+
+document.getElementById("btnCopyDlg").onclick = async () => {
+  const ok = await copyText(out.value);
+  alert(ok ? "已复制 JS 数组" : "复制失败，请手动全选复制");
+};
+
+document.getElementById("btnYaml").onclick = async () => {
+  const text = formatYaml(keptUrls());
+  out.value = text;
+  const ok = await copyText(text);
+  alert(ok ? "已复制 YAML" : "复制失败，请手动全选复制");
+};
+
+document.getElementById("btnClose").onclick = () => dlg.close();
+
+render();
+</script>
+</body>
+</html>
