@@ -12,7 +12,7 @@ cover: "https://t.alcy.cc/pic/pc/2025-12-18-283f9a7ea8e9f38fd014d78ea118f2b1.web
 写博客的时候用 Obsidian 插了张图：
 
 ```markdown
-![img](/notes/工具/hugo/assets/example.jpg)
+![img](assets/example.jpg)
 ```
 
 编辑器里看着好好的，一跑 `hugo` 部署上去，图裂了。打开浏览器开发者工具一看，图片请求的路径根本就不对。
@@ -62,7 +62,7 @@ permalinks:
 
 假设文件是 `content/posts/my-post.md`，生成的页面 URL 是 `/posts/2026/06/05/my-post/`。
 
-Leaf page 里的 `![img](/notes/工具/hugo/assets/example.jpg)`，浏览器会以页面 URL 为基准去解析：
+Leaf page 里的 `![img](assets/example.jpg)`，浏览器会以页面 URL 为基准去解析：
 
 ```
 页面地址: /posts/2026/06/05/my-post/
@@ -148,7 +148,7 @@ content/posts/my-post/assets/example.jpg
 
 实际效果：
 
-![花火](/notes/工具/hugo/assets/花火.jpg)
+![花火](assets/花火.jpg)
 
 这张图就是 leaf page 引的，能正常显示说明修好了。
 

@@ -15,43 +15,43 @@ cover: "https://t.alcy.cc/pic/pc/2025-11-1fbc794c445f83a9ffe6a3c79b91eae2.webp"
 
 用 IDEA 新建一个普通 Java 项目，作为源码阅读工程。示例代码可勾掉，空项目即可。
 
-![](/notes/工具/idea/assets/01-new-project.png)
+![](assets/01-new-project.png)
 
 创建完成后大致如下：
 
-![](/notes/工具/idea/assets/02-project-created.png)
+![](assets/02-project-created.png)
 
 ## 下载 JDK 8
 
 到 Oracle 官网下载 **JDK 8** 的安装包 / 压缩包（需登录；没有账号先注册）。
 
-![](/notes/工具/idea/assets/03-oracle-jdk8.png)
+![](assets/03-oracle-jdk8.png)
 
-![](/notes/工具/idea/assets/04-jdk8-download-list.png)
+![](assets/04-jdk8-download-list.png)
 
-![](/notes/工具/idea/assets/05-login-download.png)
+![](assets/05-login-download.png)
 
-![](/notes/工具/idea/assets/06-download-progress.png)
+![](assets/06-download-progress.png)
 
 ## 解压源码
 
 解压下载的 JDK 包。为方便区分，可以把目录重命名成例如 `jdk1.8.0_xxx-src-read`。
 
-![](/notes/工具/idea/assets/07-unzip-jdk.png)
+![](assets/07-unzip-jdk.png)
 
-![](/notes/工具/idea/assets/08-rename-jdk-dir.png)
+![](assets/08-rename-jdk-dir.png)
 
 进入 JDK 安装目录，找到 `src.zip`——主要 Java 源码在这里。
 
-![](/notes/工具/idea/assets/09-src-zip.png)
+![](assets/09-src-zip.png)
 
 把 `src.zip` 复制到刚建好的 IDEA 项目目录下，解压。解压完成后删掉项目里的这份 `src.zip`，只保留解压出的源码树（通常就是项目下的 `src`）。
 
-![](/notes/工具/idea/assets/10-copy-src-zip.png)
+![](assets/10-copy-src-zip.png)
 
-![](/notes/工具/idea/assets/11-unzip-to-project.png)
+![](assets/11-unzip-to-project.png)
 
-![](/notes/工具/idea/assets/12-delete-src-zip.png)
+![](assets/12-delete-src-zip.png)
 
 ## 配置 Project Structure
 
@@ -59,46 +59,46 @@ cover: "https://t.alcy.cc/pic/pc/2025-11-1fbc794c445f83a9ffe6a3c79b91eae2.webp"
 
 打开 **File → Project Structure**（或快捷键），新增一个 JDK：
 
-![](/notes/工具/idea/assets/13-project-structure.png)
+![](assets/13-project-structure.png)
 
-![](/notes/工具/idea/assets/14-add-jdk.png)
+![](assets/14-add-jdk.png)
 
 把新建的 SDK 重命名，例如 `JDK8-SourceRead`，和日常 JDK 区分开。
 
-![](/notes/工具/idea/assets/15-rename-sdk.png)
+![](assets/15-rename-sdk.png)
 
 在该 SDK 的 **Sourcepath** 里：
 
 1. 移除原先指向安装目录自带源码的那条 Sourcepath  
 2. 改成指向项目里解压出来的源码目录（项目下的 `src`）
 
-![](/notes/工具/idea/assets/16-remove-default-sourcepath.png)
+![](assets/16-remove-default-sourcepath.png)
 
-![](/notes/工具/idea/assets/17-choose-project-src.png)
+![](assets/17-choose-project-src.png)
 
-![](/notes/工具/idea/assets/18-sourcepath-done.png)
+![](assets/18-sourcepath-done.png)
 
-![](/notes/工具/idea/assets/19-sourcepath-confirm.png)
+![](assets/19-sourcepath-confirm.png)
 
 再给这个 SDK 加上 `tools.jar`（JDK 8 的 `lib/tools.jar`）。不加的话，编译/阅读部分工具类时容易报找不到类。
 
-![](/notes/工具/idea/assets/20-add-tools-jar.png)
+![](assets/20-add-tools-jar.png)
 
-![](/notes/工具/idea/assets/21-select-tools-jar.png)
+![](assets/21-select-tools-jar.png)
 
-![](/notes/工具/idea/assets/22-tools-jar-added.png)
+![](assets/22-tools-jar-added.png)
 
-![](/notes/工具/idea/assets/23-sdk-classpath.png)
+![](assets/23-sdk-classpath.png)
 
 最后把**当前项目的 Project SDK** 改成刚配好的这份 JDK。
 
-![](/notes/工具/idea/assets/24-project-sdk.png)
+![](assets/24-project-sdk.png)
 
 ## 配置编译器
 
 在 IDEA 的编译器设置里，适当加大堆内存，源码工程体积不小，默认内存偶发吃紧。
 
-![](/notes/工具/idea/assets/25-compiler-heap.png)
+![](assets/25-compiler-heap.png)
 
 ## 配置调试器
 
@@ -106,7 +106,7 @@ cover: "https://t.alcy.cc/pic/pc/2025-11-1fbc794c445f83a9ffe6a3c79b91eae2.webp"
 
 路径大致是：**Settings → Build, Execution, Deployment → Debugger**，关掉类似 *Do not step into the Java Runtime Classes* / *Do not step into the classes...* 这类限制（具体文案随 IDEA 版本略有差异）。
 
-![](/notes/工具/idea/assets/26-debugger-step-into.png)
+![](assets/26-debugger-step-into.png)
 
 ## 补齐找不到的两个类
 
@@ -114,23 +114,23 @@ cover: "https://t.alcy.cc/pic/pc/2025-11-1fbc794c445f83a9ffe6a3c79b91eae2.webp"
 
 先建包：
 
-![](/notes/工具/idea/assets/27-create-packages.png)
+![](assets/27-create-packages.png)
 
 `FontConfigManager`：
 
 - [hg.openjdk.org …/sun/font/FontConfigManager.java](https://hg.openjdk.org/jdk8u/jdk8u/jdk/file/7fcf35286d52/src/solaris/classes/sun/font/FontConfigManager.java)
 
-![](/notes/工具/idea/assets/28-fontconfigmanager-web.png)
+![](assets/28-fontconfigmanager-web.png)
 
-![](/notes/工具/idea/assets/29-fontconfigmanager-ide.png)
+![](assets/29-fontconfigmanager-ide.png)
 
 `UNIXToolkit`：
 
 - [hg.openjdk.org …/sun/awt/UNIXToolkit.java](https://hg.openjdk.org/jdk8u/jdk8u/jdk/file/7fcf35286d52/src/solaris/classes/sun/awt/UNIXToolkit.java)
 
-![](/notes/工具/idea/assets/30-unixtoolkit-web.png)
+![](assets/30-unixtoolkit-web.png)
 
-![](/notes/工具/idea/assets/31-unixtoolkit-ide.png)
+![](assets/31-unixtoolkit-ide.png)
 
 这两个类在 Oracle 发行的 `src.zip` 里常被裁掉或平台相关，Linux / Solaris 侧实现在 OpenJDK 的 `src/solaris/classes` 下。
 
@@ -138,11 +138,11 @@ cover: "https://t.alcy.cc/pic/pc/2025-11-1fbc794c445f83a9ffe6a3c79b91eae2.webp"
 
 随便编译/运行一下，确认环境无异常：
 
-![](/notes/工具/idea/assets/32-compile-ok.png)
+![](assets/32-compile-ok.png)
 
 之后就可以在调试里 Step Into，边读源码边记笔记：
 
-![](/notes/工具/idea/assets/33-debug-into-source.png)
+![](assets/33-debug-into-source.png)
 
 ## Reference
 

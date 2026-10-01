@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Sync jiangbyte/Notes into content/posts and rewrite asset image paths."""
+"""Sync jiangbyte/Notes into content/posts.
+
+Keeps Obsidian relative image paths (assets/...) and places assets next to
+posts under content/, so Hugo publishes them. Leaf-page path resolution is
+handled by layouts/_markup/render-image.html (see Notes 工具/hugo article).
+"""
 
 from __future__ import annotations
 
@@ -17,13 +22,11 @@ except ImportError:  # pragma: no cover
 ROOT = Path(__file__).resolve().parent.parent
 NOTES = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT.parent / "jiangbyte" / "Notes"
 POSTS = ROOT / "content" / "posts"
-STATIC_NOTES = ROOT / "static" / "notes"
+STATIC_NOTES = ROOT / "static" / "notes"  # legacy; removed on sync
 COVERS_FILE = ROOT / "data" / "covers.yaml"
 
-IMG_RE = re.compile(r"(!\[[^\]]*\]\()((?:\./)?assets/[^)\s]+)(\))")
 FM_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.S)
 
-# Fallback if data/covers.yaml missing
 DEFAULT_COVERS = [
     "https://t.alcy.cc/pic/pc/347.webp",
     "https://t.alcy.cc/pic/pc/360.webp",
@@ -72,7 +75,6 @@ def ensure_cover(text: str, rel: Path, covers: list[str]) -> str:
     if re.search(r"^cover:\s*\S", fm, re.M):
         return text
     cover = pick_cover(rel, covers)
-    # insert after opening --- block start content
     new_fm = fm.rstrip() + f'\ncover: "{cover}"'
     return f"---\n{new_fm}\n---\n" + text[m.end() :]
 
@@ -83,7 +85,6 @@ def sync() -> None:
 
     covers = load_covers()
 
-    # Keep posts/_index.md
     index = POSTS / "_index.md"
     index_text = index.read_text(encoding="utf-8") if index.exists() else "---\ntitle: 文章\n---\n"
 
@@ -92,16 +93,16 @@ def sync() -> None:
     POSTS.mkdir(parents=True)
     index.write_text(index_text, encoding="utf-8")
 
+    # Drop legacy static/notes rewrite layout
     if STATIC_NOTES.exists():
         shutil.rmtree(STATIC_NOTES)
-    STATIC_NOTES.mkdir(parents=True)
 
     count = 0
+    assets = 0
     for src in NOTES.rglob("*"):
         if src.name.startswith("."):
             continue
         rel = src.relative_to(NOTES)
-
         if src.is_dir():
             continue
 
@@ -110,28 +111,21 @@ def sync() -> None:
                 continue
             dest = POSTS / rel
             dest.parent.mkdir(parents=True, exist_ok=True)
-            text = src.read_text(encoding="utf-8")
-            parent = rel.parent.as_posix()
-            prefix = f"/notes/{parent}/" if parent != "." else "/notes/"
-
-            def repl(m: re.Match[str]) -> str:
-                path = m.group(2)
-                if path.startswith("./"):
-                    path = path[2:]
-                return f"{m.group(1)}{prefix}{path}{m.group(3)}"
-
-            text = IMG_RE.sub(repl, text)
-            text = ensure_cover(text, rel, covers)
+            # Keep relative assets/... paths; render-image.html resolves them.
+            text = ensure_cover(src.read_text(encoding="utf-8"), rel, covers)
             dest.write_text(text, encoding="utf-8")
             count += 1
         elif "assets" in rel.parts:
-            dest = STATIC_NOTES / rel
+            # Publish beside posts: content/posts/<dir>/assets/... → /posts/<dir>/assets/...
+            dest = POSTS / rel
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dest)
+            assets += 1
 
     print(f"synced {count} posts -> {POSTS}")
-    print(f"covers pool: {len(covers)}")
-    print(f"assets -> {STATIC_NOTES}")
+    print(f"copied {assets} assets beside posts (relative path + render hook)")
+    if STATIC_NOTES.exists():
+        print(f"warning: {STATIC_NOTES} still present")
 
 
 if __name__ == "__main__":

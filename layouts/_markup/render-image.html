@@ -1,0 +1,40 @@
+{{- /* Leaf-page relative images (Obsidian assets/...) — see Notes 工具/hugo */ -}}
+{{- $urlStr := .Destination | safeURL -}}
+{{- $altText := .Text -}}
+{{- $caption := .Title -}}
+{{- $url := urls.Parse $urlStr -}}
+{{- $isRemote := findRE "^(https?|data)" $url.Scheme -}}
+{{- $src := $urlStr -}}
+
+{{- if not $isRemote -}}
+  {{- $isPageBundle := eq $.Page.File.LogicalName "index.md" -}}
+  {{- if $isPageBundle -}}
+    {{- with or ($.Page.Resources.GetMatch $urlStr) (resources.Get $urlStr) -}}
+      {{- $src = .RelPermalink -}}
+    {{- end -}}
+  {{- else if not (strings.HasPrefix $urlStr "/") -}}
+    {{- /* leaf + relative: File.Dir + destination → absolute content path */ -}}
+    {{- $correctPath := path.Join $.Page.File.Dir $urlStr -}}
+    {{- with or ($.Page.Resources.GetMatch $urlStr) (resources.Get $correctPath) -}}
+      {{- $src = .RelPermalink -}}
+    {{- else -}}
+      {{- $src = printf "/%s" $correctPath -}}
+    {{- end -}}
+  {{- else -}}
+    {{- with or ($.Page.Resources.GetMatch $urlStr) (resources.Get $urlStr) -}}
+      {{- $src = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<figure
+  {{- range $k, $v := .Attributes -}}
+    {{- if $v -}}
+      {{- printf " %s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr -}}
+    {{- end -}}
+  {{- end -}}>
+  <img src="{{ $src }}" alt="{{ $altText }}" loading="lazy" decoding="async">
+  {{- with $caption -}}
+    <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end -}}
+</figure>

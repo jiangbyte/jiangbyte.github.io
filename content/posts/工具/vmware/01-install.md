@@ -14,7 +14,7 @@ cover: "https://t.alcy.cc/pic/pc/2026-04-14-f1fd01120b9f862b49c3a33fd9ee0260.web
 Broadcom 注册地址：[https://profile.broadcom.com/web/registration](https://profile.broadcom.com/web/registration)
 Broadcom 登录地址：[https://access.broadcom.com/default/ui/v1/signin/](https://access.broadcom.com/default/ui/v1/signin/)
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260619193508.png)
+![](assets/Pasted%20image%2020260619193508.png)
 
 下载入口：
 
@@ -25,10 +25,10 @@ https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Works
 ### 选择对应版本
 
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260619193628.png)
+![](assets/Pasted%20image%2020260619193628.png)
 
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620213828.png)
+![](assets/Pasted%20image%2020260620213828.png)
 
 ```
 I agree to the Terms and Conditions
@@ -36,30 +36,30 @@ I agree to the Terms and Conditions
 
 > 这个按钮可能有时候点击不了，多试几次
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620213950.png)
+![](assets/Pasted%20image%2020260620213950.png)
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620214002.png)
+![](assets/Pasted%20image%2020260620214002.png)
 
 可能需要填写一些信息：
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620214737.png)
+![](assets/Pasted%20image%2020260620214737.png)
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620214956.png)
+![](assets/Pasted%20image%2020260620214956.png)
 
 ## 开始安装
 
 
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221249.png)
+![](assets/Pasted%20image%2020260620221249.png)
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221357.png)
+![](assets/Pasted%20image%2020260620221357.png)
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221412.png)
+![](assets/Pasted%20image%2020260620221412.png)
 
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221429.png)
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221448.png)
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221456.png)
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221505.png)
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221525.png)
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221723.png)
-![](/notes/工具/vmware/assets/Pasted%20image%2020260620221927.png)
+![](assets/Pasted%20image%2020260620221429.png)
+![](assets/Pasted%20image%2020260620221448.png)
+![](assets/Pasted%20image%2020260620221456.png)
+![](assets/Pasted%20image%2020260620221505.png)
+![](assets/Pasted%20image%2020260620221525.png)
+![](assets/Pasted%20image%2020260620221723.png)
+![](assets/Pasted%20image%2020260620221927.png)
