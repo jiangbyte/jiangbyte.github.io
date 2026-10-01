@@ -5,6 +5,7 @@ draft: false
 description: "安装包下载地址： https://pan.quark.cn/s/6a455cd4bce2"
 categories: ["嵌入式"]
 tags: ["嵌入式"]
+cover: "https://t.alcy.cc/pic/pc/27d07078f0d027d71409be4ac62dbe63.webp"
 ---
 ## 下载 Keil5
 

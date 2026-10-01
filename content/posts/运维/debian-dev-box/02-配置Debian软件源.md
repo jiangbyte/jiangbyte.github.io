@@ -5,6 +5,7 @@ draft: false
 description: "默认 deb.debian.org 在国内经常慢或不稳。开发机建议："
 categories: ["运维"]
 tags: ["运维"]
+cover: "https://t.alcy.cc/pic/pc/416.webp"
 ---
 ## 为什么要改源
 

@@ -5,6 +5,7 @@ draft: false
 description: "CentOS 7 自带的包管理是 Yum 不是 Dnf，而且官方源里没有 MySQL，得自己加仓库。这篇文章就是我在 CentOS 7 上装 MySQL 的完整记录，包括几种不同的安装方式，方便下次忘了回来看。"
 categories: ["运维"]
 tags: ["运维"]
+cover: "https://t.alcy.cc/pic/pc/2025-12-18-283f9a7ea8e9f38fd014d78ea118f2b1.webp"
 ---
 ## 先说背景
 

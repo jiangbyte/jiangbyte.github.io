@@ -5,6 +5,7 @@ draft: false
 description: "CentOS 7 默认源里没有 Redis，得自己想办法。这篇整理了几种装法，从最省事的 Yum 到手动编译，看情况选就行。"
 categories: ["运维"]
 tags: ["运维"]
+cover: "https://t.alcy.cc/pic/pc/361.webp"
 ---
 ## 先说背景
 

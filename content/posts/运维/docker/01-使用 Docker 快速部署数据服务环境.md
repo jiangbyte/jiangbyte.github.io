@@ -5,6 +5,7 @@ draft: false
 description: "首先创建所有服务的数据持久化目录："
 categories: ["运维"]
 tags: ["运维"]
+cover: "https://t.alcy.cc/pic/pc/476.webp"
 ---
 ## 前置准备
 

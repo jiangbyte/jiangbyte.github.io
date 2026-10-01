@@ -5,6 +5,7 @@ draft: false
 description: "写博客的时候用 Obsidian 插了张图："
 categories: ["工具"]
 tags: ["工具"]
+cover: "https://t.alcy.cc/pic/pc/2025-12-18-283f9a7ea8e9f38fd014d78ea118f2b1.webp"
 ---
 ## 先说问题
 

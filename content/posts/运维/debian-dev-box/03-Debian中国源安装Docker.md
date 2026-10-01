@@ -5,6 +5,7 @@ draft: false
 description: "已配好 Debian 软件源（见 02 配置 Debian 软件源） 确认代号："
 categories: ["运维"]
 tags: ["运维"]
+cover: "https://t.alcy.cc/pic/pc/375.webp"
 ---
 ## 前置
 

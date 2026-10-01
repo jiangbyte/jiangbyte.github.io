@@ -5,6 +5,7 @@ draft: false
 description: "顶栏装了 AppMenu Plugin 之后："
 categories: ["运维"]
 tags: ["运维"]
+cover: "https://t.alcy.cc/pic/pc/361.webp"
 ---
 ## 现象
 

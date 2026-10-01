@@ -5,6 +5,7 @@ draft: false
 description: "机器是一台日常开发本：Debian GNU/Linux 13 (trixie) + XFCE，硬件是 HP ProBook，双 NVMe，本机还跑着 Docker（MySQL / Redis / Portainer 等）。"
 categories: ["运维"]
 tags: ["运维"]
+cover: "https://t.alcy.cc/pic/pc/11203ff07c6e01317b8bb08ee6814a8e_cde8cc.webp"
 ---
 ## 先说场景
 
