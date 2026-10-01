@@ -91,7 +91,7 @@ params:
           img: https://avatars.githubusercontent.com/u/116237950?v=4
           emoji: ""
         # 信息卡背景图（沉浸式）
-        background: https://t.alcy.cc/pic/pc/456.webp
+        background: https://t.alcy.cc/pic/pc/2026-04-03-31feb755d4e61712e4c695bcb1f301ce.webp
         description: Programming enthusiast based in GZ, CN.
         content: 写清楚，再优化 · 先跑通，再抽象
         witty_words: [写清楚，再优化, 先跑通，再抽象]
@@ -105,7 +105,15 @@ params:
       default:
         # 无封面时轮换；同步时也会写入稳定栗次元 cover（见 data/covers.yaml）
         cover:
-          - https://t.alcy.cc/pic/pc/518.webp
+          - https://t.alcy.cc/pic/pc/2026-02-15-d04a3ad05a815966831fdbaee96ba802.webp
+          - https://t.alcy.cc/pic/pc/2026-04-03-ccffff8abba0d4b2918ed3ed159b8b1e.webp
+          - https://t.alcy.cc/pic/pc/bg.webp
+          - https://t.alcy.cc/pic/pc/_-_1.webp
+          - https://t.alcy.cc/pic/pc/134086249_p0.webp
+          - https://t.alcy.cc/pic/pc/2025-10-d12460fe5679dfb3a74cd4eff3f292cf.webp
+          - https://t.alcy.cc/pic/pc/2025-10-1f498aca5bae39e8724c955af3a2ecdd.webp
+          - https://t.alcy.cc/pic/pc/507.webp
+          - https://t.alcy.cc/pic/pc/2025-10-272ff927a437a7a7363cacd6be115623.webp
         copyright:
           # 前景圆形头像；author_background 只是背后那层背景图
           author: https://avatars.githubusercontent.com/u/116237950?v=4
