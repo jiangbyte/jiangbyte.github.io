@@ -62,6 +62,7 @@ params:
       name:
         class: text
         custom: 撷时录
+      icon: https://avatars.githubusercontent.com/u/116237950?v=4
     nav:
       group:
         链接:
