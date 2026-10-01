@@ -97,7 +97,7 @@ params:
           img: https://github.com/jiangbyte.png
           emoji: ""
         description: Programming enthusiast based in GZ, CN.
-        content: 撷时录 · 笔记同步自 jiangbyte/Notes
+        content: 写清楚，再优化 · 先跑通，再抽象
         witty_words: [写清楚，再优化, 先跑通，再抽象]
         information:
           - name: GitHub

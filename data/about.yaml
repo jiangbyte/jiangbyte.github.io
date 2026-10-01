@@ -26,7 +26,4 @@ sections:
     label: 关于本站
     title: 撷时录
     content: |
-      撷时录是 Charlie Zhang 的个人笔记站。内容源仓是 [jiangbyte/Notes](https://github.com/jiangbyte/jiangbyte/tree/main/Notes)，通过 GitHub Actions 同步到本站点并用 Solitude（Hugo）构建发布。
-
-      - GitHub: [jiangbyte](https://github.com/jiangbyte)
-      - Resume: [jiangbyte.cn/resume](https://jiangbyte.cn/resume)
+      撷时录是我随手记下实践与折腾过程的地方。写清楚、再优化；先跑通、再抽象——把踩过的坑和跑通的路径留成可复用的笔记。
