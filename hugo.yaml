@@ -27,8 +27,6 @@ menus:
     - name: 文库
       identifier: library
       weight: 10
-      params:
-        icon: fas fa-book
     - name: 全部文章
       pageRef: /archives
       parent: library
@@ -50,13 +48,9 @@ menus:
     - name: 关于
       pageRef: /about
       weight: 20
-      params:
-        icon: fas fa-user
     - name: GitHub
       url: https://github.com/jiangbyte
       weight: 30
-      params:
-        icon: fab fa-github
 
 params:
   author:
@@ -111,7 +105,7 @@ params:
         cover:
           - https://t.alcy.cc/pic/pc/518.webp
         copyright:
-          author_background: ""
+          author_background: "https://t.alcy.cc/pic/pc/456.webp"
       meta:
         pv: false
         comment: false
