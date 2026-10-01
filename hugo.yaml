@@ -66,9 +66,8 @@ params:
   solitude:
     site:
       name:
-        # 头部只保留左侧四格 icon（back-home-button），不显示站名文字
         class: text
-        custom: ""
+        custom: Charlie Zhang
     nav:
       group:
         链接:

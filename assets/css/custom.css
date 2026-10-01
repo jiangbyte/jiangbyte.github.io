@@ -1,4 +1,22 @@
-/* Header: keep only the back-home icon; hide site-name text */
-#site-name .title {
-  display: none;
+/* Header brand: show title text "Charlie Zhang" */
+/* Top-level nav: icon only (hide 文库/关于/GitHub labels) */
+#menus > .menus_items > .menus_item > a.site-page > span {
+  display: none !important;
+}
+
+#menus > .menus_items > .menus_item > a.site-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+}
+
+#menus > .menus_items > .menus_item > a.site-page > i {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+/* Dropdown children keep icon + text */
+#menus .menus_item_child .site-page.child > span {
+  display: inline !important;
 }
