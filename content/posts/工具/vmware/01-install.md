@@ -5,7 +5,7 @@ draft: false
 description: "本文按 2026-06-19 时点可获取的 26H1 免费版 流程整理，主要记录 Windows 宿主机上的下载和安装步骤。"
 categories: ["工具"]
 tags: ["工具"]
-cover: "https://t.alcy.cc/pic/pc/2026-04-14-f1fd01120b9f862b49c3a33fd9ee0260.webp"
+cover: "https://t.alcy.cc/pic/pc/2025-12-18-c10cf3704d308bbeba871eb0d0dfb653.webp"
 ---
 本文按 **2026-06-19** 时点可获取的 **26H1 免费版** 流程整理，主要记录 **Windows 宿主机**上的下载和安装步骤。
 

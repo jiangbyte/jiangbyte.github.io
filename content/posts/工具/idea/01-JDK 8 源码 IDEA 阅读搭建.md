@@ -5,7 +5,7 @@ draft: false
 description: "个人比较习惯用 IDEA 读源码。下面把一套「可改、可调试、不影响日常 JDK」的 JDK 8 源码阅读环境搭起来。"
 categories: ["工具"]
 tags: ["工具"]
-cover: "https://t.alcy.cc/pic/pc/2025-11-1fbc794c445f83a9ffe6a3c79b91eae2.webp"
+cover: "https://t.alcy.cc/pic/pc/2025-12-18-0ad59fd83e56b4d7bfd1354053933b75.webp"
 ---
 个人比较习惯用 IDEA 读源码。下面把一套「可改、可调试、不影响日常 JDK」的 JDK 8 源码阅读环境搭起来。
 

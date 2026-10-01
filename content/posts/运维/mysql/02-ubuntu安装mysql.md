@@ -5,7 +5,7 @@ draft: false
 description: "Ubuntu 的 APT 源里自带 MySQL，装起来比 CentOS 省心不少。不过默认版本可能不是最新的，想指定版本或者用官方最新版也有办法。"
 categories: ["运维"]
 tags: ["运维"]
-cover: "https://t.alcy.cc/pic/pc/15d9199ac8fe3a029f5bef6140adbd98.webp"
+cover: "https://t.alcy.cc/pic/pc/2025-10-5dd032f4e704e3d2956476bc7eafef7f.webp"
 ---
 ## 先说背景
 

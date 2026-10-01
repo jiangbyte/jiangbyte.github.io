@@ -5,7 +5,7 @@ draft: false
 description: "审计告警功能需要把检测到的安全事件推送到飞书群。飞书提供了自定义机器人 Webhook 的接口，支持文本和富文本消息格式，也可以配置 HMAC-SHA256 签名验证。"
 categories: ["实践"]
 tags: ["实践"]
-cover: "https://t.alcy.cc/pic/pc/2026-04-14-f1fd01120b9f862b49c3a33fd9ee0260.webp"
+cover: "https://t.alcy.cc/pic/pc/2025-12-18-c10cf3704d308bbeba871eb0d0dfb653.webp"
 ---
 审计告警功能需要把检测到的安全事件推送到飞书群。飞书提供了自定义机器人 Webhook 的接口，支持文本和富文本消息格式，也可以配置 HMAC-SHA256 签名验证。
 

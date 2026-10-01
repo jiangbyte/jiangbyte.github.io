@@ -5,7 +5,7 @@ draft: false
 description: "本文要装的是 Oracle MySQL 和 Redis，不是 MariaDB。"
 categories: ["运维"]
 tags: ["运维"]
-cover: "https://t.alcy.cc/pic/pc/360.webp"
+cover: "https://t.alcy.cc/pic/pc/2026-02-15-15b3912819b0d689709ecd139a22a89f.webp"
 ---
 ## 说明
 

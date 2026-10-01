@@ -5,7 +5,7 @@ draft: false
 description: "Ubuntu 比 CentOS 省心点，APT 源里直接有 Redis，不用额外加仓库。不过版本可能不是最新的，想尝鲜还是得自己编译。"
 categories: ["运维"]
 tags: ["运维"]
-cover: "https://t.alcy.cc/pic/pc/365.webp"
+cover: "https://t.alcy.cc/pic/pc/369.webp"
 ---
 ## 先说背景
 

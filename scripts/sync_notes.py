@@ -28,18 +28,8 @@ COVERS_FILE = ROOT / "data" / "covers.yaml"
 FM_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.S)
 
 DEFAULT_COVERS = [
-    "https://t.alcy.cc/pic/pc/347.webp",
-    "https://t.alcy.cc/pic/pc/360.webp",
-    "https://t.alcy.cc/pic/pc/361.webp",
-    "https://t.alcy.cc/pic/pc/365.webp",
-    "https://t.alcy.cc/pic/pc/375.webp",
-    "https://t.alcy.cc/pic/pc/413.webp",
-    "https://t.alcy.cc/pic/pc/416.webp",
-    "https://t.alcy.cc/pic/pc/442.webp",
-    "https://t.alcy.cc/pic/pc/470.webp",
-    "https://t.alcy.cc/pic/pc/476.webp",
-    "https://t.alcy.cc/pic/pc/499.webp",
-    "https://t.alcy.cc/pic/pc/518.webp",
+    # fallback if data/covers.yaml missing; API source: https://t.alcy.cc/ycy
+    "https://t.alcy.cc/ycy",
 ]
 
 
@@ -67,16 +57,22 @@ def pick_cover(rel: Path, covers: list[str]) -> str:
 
 
 def ensure_cover(text: str, rel: Path, covers: list[str]) -> str:
+    """Assign/refresh auto covers from covers.yaml (栗次元 ycy 图池)."""
+    cover = pick_cover(rel, covers)
     m = FM_RE.match(text)
     if not m:
-        cover = pick_cover(rel, covers)
         return f'---\ncover: "{cover}"\n---\n\n' + text
     fm = m.group(1)
-    if re.search(r"^cover:\s*\S", fm, re.M):
-        return text
-    cover = pick_cover(rel, covers)
-    new_fm = fm.rstrip() + f'\ncover: "{cover}"'
-    return f"---\n{new_fm}\n---\n" + text[m.end() :]
+    existing = re.search(r'^cover:\s*["\']?(\S+?)["\']?\s*$', fm, re.M)
+    if existing:
+        old = existing.group(1)
+        # Keep manually set covers; refresh 栗次元 auto covers
+        if "t.alcy.cc" not in old and not old.startswith("/img/"):
+            return text
+        fm = re.sub(r'^cover:\s*.*$', f'cover: "{cover}"', fm, count=1, flags=re.M)
+    else:
+        fm = fm.rstrip() + f'\ncover: "{cover}"'
+    return f"---\n{fm}\n---\n" + text[m.end() :]
 
 
 def sync() -> None:

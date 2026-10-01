@@ -5,7 +5,7 @@ draft: false
 description: "机器上同时有三套 Python 很容易搅在一起："
 categories: ["工具"]
 tags: ["工具"]
-cover: "https://t.alcy.cc/pic/pc/361.webp"
+cover: "https://t.alcy.cc/pic/pc/2026-04-03-eb11cb3c33b2d6d7f41d9d7da1c5d8a6.webp"
 ---
 ## 先说目标
 

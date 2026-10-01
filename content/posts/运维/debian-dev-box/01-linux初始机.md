@@ -5,7 +5,7 @@ draft: false
 description: "新装或刚到手的 Debian 开发机，先把「能正常干活」的底子铺好，再去改软件源、装 Docker、跑 MySQL / Redis。"
 categories: ["运维"]
 tags: ["运维"]
-cover: "https://t.alcy.cc/pic/pc/2025-10-eacc839c9e313fba1871fde55304b5d0.webp"
+cover: "https://t.alcy.cc/pic/pc/2025-11-6f7a5545758f27b6d3defe1be03830ce.webp"
 ---
 ## 目标
 

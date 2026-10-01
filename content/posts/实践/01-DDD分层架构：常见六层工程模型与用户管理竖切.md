@@ -5,7 +5,7 @@ draft: false
 description: "先说结论：分层是为了改需求时知道改哪一层。"
 categories: ["实践"]
 tags: ["实践"]
-cover: "https://t.alcy.cc/pic/pc/347.webp"
+cover: "https://t.alcy.cc/pic/pc/2025-12-244877eb3b28473eb63ca9fd66be5146.webp"
 ---
 先说结论：分层是为了**改需求时知道改哪一层**。
 

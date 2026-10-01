@@ -5,7 +5,7 @@ draft: false
 description: "机器：Debian 13（trixie）+ XFCE，原先用 LightDM + lightdm-gtk-greeter。"
 categories: ["运维"]
 tags: ["运维"]
-cover: "https://t.alcy.cc/pic/pc/499.webp"
+cover: "https://t.alcy.cc/pic/pc/56d271aed635e1e2621daf9eb2c9eec4.webp"
 ---
 ## 目标与边界
 
