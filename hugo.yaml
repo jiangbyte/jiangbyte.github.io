@@ -88,7 +88,7 @@ params:
         Sticky: newestPost,allInfo
       my_card:
         author:
-          img: https://github.com/jiangbyte.png
+          img: https://avatars.githubusercontent.com/u/116237950?v=4
           emoji: ""
         description: Programming enthusiast based in GZ, CN.
         content: 写清楚，再优化 · 先跑通，再抽象
@@ -120,7 +120,7 @@ params:
         list: []
     footer:
       information:
-        author: /img/logo.png
+        author: https://avatars.githubusercontent.com/u/116237950?v=4
         left:
           - name: GitHub
             url: https://github.com/jiangbyte
