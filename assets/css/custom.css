@@ -143,19 +143,105 @@
 /* —— Global: milky glass theme (replace solid blue accents) —— */
 :root,
 [data-theme="light"] {
-  --efu-blue: #6e6860;
-  --milk-glass: rgba(255, 252, 248, 0.72);
-  --milk-glass-strong: rgba(255, 252, 248, 0.88);
-  --milk-ink: #2a2825;
-  --milk-ink-soft: rgba(42, 40, 37, 0.72);
+  --efu-blue: #4f4a45;
+  --efu-theme: #4f4a45;
+  --efu-main: #4f4a45;
+  --efu-theme-op: color-mix(in srgb, #4f4a45 12%, transparent);
+  --efu-theme-op-deep: color-mix(in srgb, #4f4a45 82%, transparent);
+  --efu-theme-op-light: color-mix(in srgb, #4f4a45 5%, transparent);
+  --efu-main-op: var(--efu-theme-op);
+  --efu-main-op-deep: var(--efu-theme-op-deep);
+  --efu-main-op-light: var(--efu-theme-op-light);
+  /* 正文 / 链接：深墨色，避免灰脏字 */
+  --efu-fontcolor: #1a1816;
+  --efu-secondtext: rgba(26, 24, 22, 0.68);
+  --efu-lighttext: #1a1816;
+  --efu-hovertext: #000000;
+  --efu-card-bg: rgba(255, 253, 250, 0.94);
+  --efu-card-border: rgba(26, 24, 22, 0.08);
+  --efu-background: #f3f0ea;
+  --efu-secondbg: #f7f4ef;
+  --efu-ahoverbg: rgba(26, 24, 22, 0.05);
+  --milk-glass: rgba(255, 253, 250, 0.78);
+  --milk-glass-strong: rgba(255, 253, 250, 0.92);
+  --milk-ink: #1a1816;
+  --milk-ink-soft: rgba(26, 24, 22, 0.7);
 }
 
 [data-theme="dark"] {
-  --efu-blue: #ddd4c8;
-  --milk-glass: rgba(40, 38, 36, 0.62);
-  --milk-glass-strong: rgba(48, 46, 44, 0.82);
-  --milk-ink: #f2ebe3;
-  --milk-ink-soft: rgba(242, 235, 227, 0.78);
+  --efu-blue: #e8e0d4;
+  --efu-theme: #e8e0d4;
+  --efu-main: #e8e0d4;
+  --efu-fontcolor: #f4efe8;
+  --efu-secondtext: rgba(244, 239, 232, 0.72);
+  --efu-lighttext: #f4efe8;
+  --efu-hovertext: #ffffff;
+  --efu-card-bg: rgba(28, 27, 25, 0.92);
+  --efu-card-border: rgba(244, 239, 232, 0.1);
+  --milk-glass: rgba(36, 34, 32, 0.72);
+  --milk-glass-strong: rgba(42, 40, 38, 0.88);
+  --milk-ink: #f4efe8;
+  --milk-ink-soft: rgba(244, 239, 232, 0.78);
+}
+
+/* Content card: opaque milk so text stays crisp over cover bleed */
+#content-inner,
+.layout > div:first-child,
+#post,
+#page,
+.recent-post-item,
+.card-widget {
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+}
+
+#article-container,
+.post-content,
+.article-container {
+  color: var(--efu-fontcolor);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#article-container a,
+.post-content a,
+.article-container a {
+  color: var(--efu-fontcolor) !important;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(26, 24, 22, 0.35);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+#article-container a:hover,
+.post-content a:hover,
+.article-container a:hover {
+  color: #000 !important;
+  border-bottom-color: #000;
+}
+
+[data-theme="dark"] #article-container a,
+[data-theme="dark"] .post-content a,
+[data-theme="dark"] .article-container a {
+  border-bottom-color: rgba(244, 239, 232, 0.4);
+}
+
+[data-theme="dark"] #article-container a:hover,
+[data-theme="dark"] .post-content a:hover,
+[data-theme="dark"] .article-container a:hover {
+  color: #fff !important;
+  border-bottom-color: #fff;
+}
+
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4,
+#article-container h5,
+#article-container h6,
+.post-title,
+.article-title {
+  color: var(--efu-fontcolor) !important;
+  font-weight: 700;
 }
 
 /* Nav / menu hover → frosted milk, not solid theme fill */
@@ -186,7 +272,7 @@
 }
 
 #page-header #nav .menus_items .menus_item .menus_item_child li a:hover {
-  background: rgba(110, 104, 96, 0.12) !important;
+  background: rgba(79, 74, 69, 0.1) !important;
   color: var(--milk-ink) !important;
 }
 
@@ -202,7 +288,7 @@
 a.article-meta__tags:hover {
   background: var(--milk-glass) !important;
   color: var(--milk-ink) !important;
-  border-color: rgba(110, 104, 96, 0.22) !important;
+  border-color: rgba(79, 74, 69, 0.2) !important;
   box-shadow: 0 2px 10px rgba(20, 24, 32, 0.06);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -217,12 +303,12 @@ a.article-meta__tags:hover {
 #post-comment .comment-head .comment-headline,
 .btn-beautify:hover,
 button.btn-beautify:hover {
-  --efu-main: #6e6860;
+  --efu-main: #4f4a45;
 }
 
 [data-theme="dark"] .recent-post-item:hover,
 [data-theme="dark"] .btn-beautify:hover {
-  --efu-main: #ddd4c8;
+  --efu-main: #e8e0d4;
 }
 
 /* Rightside / console / totop hover glass */
