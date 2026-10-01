@@ -3,7 +3,7 @@ sections:
   - type: intro
     greeting: 你好 👋
     name_prefix: 我是
-    name: Charlie Zhang
+    name: Charlie
     description: Programming enthusiast based in GZ, CN.
     pursuit:
       label: 关注
@@ -24,9 +24,9 @@ sections:
 
   - type: story
     label: 关于本站
-    title: jiangbyte
+    title: 撷时录
     content: |
-      这里是 Charlie Zhang 的个人笔记站。内容源仓是 [jiangbyte/Notes](https://github.com/jiangbyte/jiangbyte/tree/main/Notes)，通过 GitHub Actions 同步到本站点并用 Solitude（Hugo）构建发布。
+      撷时录是 Charlie Zhang 的个人笔记站。内容源仓是 [jiangbyte/Notes](https://github.com/jiangbyte/jiangbyte/tree/main/Notes)，通过 GitHub Actions 同步到本站点并用 Solitude（Hugo）构建发布。
 
       - GitHub: [jiangbyte](https://github.com/jiangbyte)
       - Resume: [jiangbyte.cn/resume](https://jiangbyte.cn/resume)

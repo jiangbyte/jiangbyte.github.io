@@ -1,5 +1,5 @@
 baseURL: https://jiangbyte.github.io/
-title: Charlie Zhang
+title: 撷时录
 locale: zh-CN
 defaultContentLanguage: zh-cn
 timeZone: Asia/Shanghai
@@ -60,14 +60,14 @@ menus:
 
 params:
   author:
-    name: Charlie Zhang
+    name: Charlie
     email: ""
-  description: Charlie Zhang 的个人笔记与实践记录
+  description: Charlie 的个人笔记与实践记录 · 撷时录
   solitude:
     site:
       name:
         class: text
-        custom: Charlie Zhang
+        custom: 撷时录
     nav:
       group:
         链接:
@@ -79,8 +79,8 @@ params:
             icon: /img/logo.png
     hometop:
       banner:
-        title: Charlie Zhang
-        desc: Charlie Zhang 的笔记与实践记录
+        title: 撷时录
+        desc: Charlie 的笔记与实践记录
       recommendList: []
     aside:
       home:
@@ -97,7 +97,7 @@ params:
           img: https://github.com/jiangbyte.png
           emoji: ""
         description: Programming enthusiast based in GZ, CN.
-        content: 笔记同步自 jiangbyte/Notes，使用 Solitude 主题构建。
+        content: 撷时录 · 笔记同步自 jiangbyte/Notes
         witty_words: [写清楚，再优化, 先跑通，再抽象]
         information:
           - name: GitHub
@@ -109,29 +109,6 @@ params:
       default:
         # 无封面时轮换；同步时也会写入稳定栗次元 cover（见 data/covers.yaml）
         cover:
-          - https://t.alcy.cc/pic/pc/11203ff07c6e01317b8bb08ee6814a8e_cde8cc.webp
-          - https://t.alcy.cc/pic/pc/11ae7b1f420937be19229d79918566de.webp
-          - https://t.alcy.cc/pic/pc/15d9199ac8fe3a029f5bef6140adbd98.webp
-          - https://t.alcy.cc/pic/pc/2025-10-4058489f725461d5a781d52f2e78a72c.webp
-          - https://t.alcy.cc/pic/pc/2025-10-531c061ee5de5eef8fa143592125c496.webp
-          - https://t.alcy.cc/pic/pc/2025-10-b70789595781db664558b22729d9c8eb.webp
-          - https://t.alcy.cc/pic/pc/2025-10-eacc839c9e313fba1871fde55304b5d0.webp
-          - https://t.alcy.cc/pic/pc/2025-11-1fbc794c445f83a9ffe6a3c79b91eae2.webp
-          - https://t.alcy.cc/pic/pc/2025-11-a22666a2925f80a61d846af000c2ff60.webp
-          - https://t.alcy.cc/pic/pc/2025-12-18-283f9a7ea8e9f38fd014d78ea118f2b1.webp
-          - https://t.alcy.cc/pic/pc/2026-04-14-f1fd01120b9f862b49c3a33fd9ee0260.webp
-          - https://t.alcy.cc/pic/pc/27d07078f0d027d71409be4ac62dbe63.webp
-          - https://t.alcy.cc/pic/pc/347.webp
-          - https://t.alcy.cc/pic/pc/360.webp
-          - https://t.alcy.cc/pic/pc/361.webp
-          - https://t.alcy.cc/pic/pc/365.webp
-          - https://t.alcy.cc/pic/pc/375.webp
-          - https://t.alcy.cc/pic/pc/413.webp
-          - https://t.alcy.cc/pic/pc/416.webp
-          - https://t.alcy.cc/pic/pc/442.webp
-          - https://t.alcy.cc/pic/pc/470.webp
-          - https://t.alcy.cc/pic/pc/476.webp
-          - https://t.alcy.cc/pic/pc/499.webp
           - https://t.alcy.cc/pic/pc/518.webp
         copyright:
           author_background: ""
