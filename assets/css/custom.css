@@ -55,3 +55,87 @@
   position: relative;
   z-index: 1;
 }
+
+/* —— Home recommend: milky frosted glass instead of solid theme blue —— */
+.home-center-content {
+  position: relative;
+  background: transparent;
+}
+
+/* Cover bleeds under the right rail so glass has something to blur */
+.home-center-left {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.home-center-left .home-center-title {
+  width: min(62%, calc(100% - 32px - 30%));
+  max-width: min(62%, calc(100% - 32px - 30%));
+}
+
+.home-center-right {
+  position: relative;
+  z-index: 2;
+  margin-left: auto;
+  background: rgba(255, 252, 248, 0.52) !important;
+  backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.35),
+    -8px 0 28px rgba(20, 24, 32, 0.08);
+  transition: background-color 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+.home-center-item {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.home-center-item:hover {
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.home-center-item.active {
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 1px 10px rgba(20, 24, 32, 0.06);
+}
+
+.home-center-item-title a,
+.home-center-item-title a:hover,
+.home-center-item-title a:focus-visible {
+  color: rgba(28, 32, 40, 0.88) !important;
+  opacity: 1;
+}
+
+.home-center-item.active .home-center-item-title a {
+  color: rgba(18, 22, 30, 0.96) !important;
+  font-weight: 600;
+}
+
+/* Banner bottom wash: soft dark instead of theme blue */
+.home-center-mask {
+  background: linear-gradient(
+    to top,
+    rgba(20, 24, 32, 0.5) 0%,
+    transparent 100%
+  ) !important;
+}
+
+@media (max-width: 768px) {
+  .home-center-left {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+
+  .home-center-left .home-center-title {
+    width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
+  }
+
+  .home-center-right {
+    display: none;
+  }
+}
