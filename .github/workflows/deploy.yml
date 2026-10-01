@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [notes-updated]
 
 permissions:
   contents: read
@@ -18,11 +20,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout site
         uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
+
+      - name: Checkout Notes source
+        uses: actions/checkout@v4
+        with:
+          repository: jiangbyte/jiangbyte
+          path: _notes_src
+          sparse-checkout: |
+            Notes
+          sparse-checkout-cone-mode: true
+
+      - name: Sync Notes into content/posts (build only)
+        run: python3 scripts/sync_notes.py "$GITHUB_WORKSPACE/_notes_src/Notes"
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3

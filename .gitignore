@@ -2,3 +2,7 @@ public/
 resources/
 .hugo_build.lock
 .DS_Store
+
+# Notes are synced at build time from jiangbyte/Notes — never commit them here
+content/posts/**
+!content/posts/_index.md
