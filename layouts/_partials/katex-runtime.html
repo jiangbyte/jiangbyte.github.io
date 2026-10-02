@@ -1,0 +1,38 @@
+{{- $cfg := site.Params.solitude -}}
+{{- if $cfg.katex.enable -}}
+{{- $katexJs := $cfg.cdn.katex_js | default "https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.js" -}}
+{{- $auto := $cfg.cdn.katex_auto_render | default "https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/contrib/auto-render.min.js" -}}
+<script defer src="{{ $katexJs }}"></script>
+{{ if $cfg.katex.copytex }}<script defer src="{{ $cfg.cdn.katex_copytex }}"></script>{{ end }}
+<script defer src="{{ $auto }}"></script>
+<script>
+  (() => {
+    const render = () => {
+      if (typeof renderMathInElement !== 'function') return;
+      const root = document.querySelector('.article-container') || document.body;
+      renderMathInElement(root, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\\[', right: '\\]', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+        ],
+        throwOnError: false,
+      });
+    };
+    const wait = () => {
+      if (typeof renderMathInElement === 'function') {
+        render();
+        return;
+      }
+      setTimeout(wait, 50);
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wait);
+    } else {
+      wait();
+    }
+    document.addEventListener('pjax:complete', wait);
+  })();
+</script>
+{{- end -}}

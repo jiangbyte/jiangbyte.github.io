@@ -1,0 +1,34 @@
+{{ $cfg := site.Params.solitude.related_post }}
+{{ if $cfg.enable }}
+  {{ $related := site.RegularPages.Related . | first ($cfg.limit | default 3) }}
+  {{ $defaults := site.Params.solitude.post.default.cover }}
+  {{ with $related }}
+    <section class="relatedPosts" aria-labelledby="related-posts-title">
+      <div class="headline">
+        <i class="solitude fas fa-star" aria-hidden="true"></i>
+        <span id="related-posts-title">{{ i18n "relatedPostsLead" }}</span>
+        <button class="relatedPosts-random" type="button" data-solitude-action="randomPost">
+          {{ i18n "browseRandomly" }}
+        </button>
+      </div>
+      <div class="relatedPosts-list">
+        {{ range $index, $post := . }}
+          {{ $cover := $post.Params.cover }}
+          {{ if and (not $cover) $defaults }}
+            {{ $cover = index $defaults (mod $index (len $defaults)) }}
+          {{ end }}
+          {{ if not $cover }}{{ $cover = "/img/default.avif" }}{{ end }}
+          <article class="relatedPosts-item">
+            <a class="relatedPosts-link" href="{{ $post.RelPermalink }}">
+              <img class="cover" src="{{ $cover | relURL }}" alt="" loading="lazy" decoding="async">
+              <div class="content is-center">
+                <div class="title">{{ $post.Title }}</div>
+                <time class="date" datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006-01-02" }}</time>
+              </div>
+            </a>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,71 @@
+{{ $cfg := site.Params.solitude }}
+{{ $git := .Params.git }}
+{{ $site := .Params.site }}
+{{ $githubRepo := "" }}
+{{ if $git }}
+  {{ $ghMatches := findRESubmatch `(?i)(?:https?://)?(?:www\.)?github\.com/([^/]+)/([^/#?]+?)(?:\.git)?(?:[/?#]|$)` $git 1 }}
+  {{ with index $ghMatches 0 }}
+    {{ $githubRepo = printf "%s/%s" (index . 1) (index . 2) }}
+  {{ end }}
+{{ end }}
+<div id="post-info" class="project-head">
+  <div class="project-head-grid">
+    <div class="project-head-main">
+      <div id="post-firstinfo">
+        <div class="meta-firstline">
+          <a class="post-meta-original" href="{{ "projects/" | relLangURL }}" title="返回项目列表">项目</a>
+          {{ with .GetTerms "tags" }}
+          <div class="tag_share">
+            <div class="post-meta__tag-list">
+              {{ range . }}
+              <a class="post-meta__tags" href="{{ .RelPermalink }}"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>{{ .LinkTitle }}</span></a>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      <h1 class="post-title">{{ .Title }}</h1>
+      {{ with .Params.description }}<p class="project-head-desc">{{ . }}</p>{{ end }}
+      <div id="post-meta">
+        <div class="meta-secondline">
+          {{ if $cfg.post.meta.date }}
+          <span class="post-meta-date" title="发布于 {{ .Date.Format "2006-01-02" }}">
+            <i class="post-meta-icon solitude fas fa-calendar-days"></i>
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time>
+          </span>
+          {{ end }}
+          {{ if $cfg.post.meta.updated }}
+          <span class="post-meta-date" title="更新于 {{ .Lastmod.Format "2006-01-02" }}">
+            <i class="post-meta-icon solitude fas fa-arrows-rotate"></i>
+            <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+          </span>
+          {{ end }}
+          {{ if $cfg.post.meta.wordcount }}
+          <span class="post-meta-wordcount">
+            <i class="post-meta-icon solitude fas fa-file-word" title="字数"></i>
+            <span class="word-count">{{ .WordCount }}</span>
+          </span>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <aside class="project-head-aside">
+      {{ if or $git $site }}
+      <div class="project-head-actions">
+        {{ with $git }}
+        <a class="projects-card-action" href="{{ . }}" target="_blank" rel="noopener noreferrer external nofollow">仓库</a>
+        {{ end }}
+        {{ with $site }}
+        <a class="projects-card-action" href="{{ . }}" target="_blank" rel="noopener noreferrer external nofollow">访问</a>
+        {{ end }}
+      </div>
+      {{ end }}
+      {{ if $githubRepo }}
+      <div class="project-head-repo">
+        {{ partial "shortcodes/repository.html" (dict "provider" "github" "label" "GitHub" "base" "https://github.com" "api" "https://api.github.com/repos/" "repo" $githubRepo) }}
+      </div>
+      {{ end }}
+    </aside>
+  </div>
+</div>

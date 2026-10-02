@@ -11,6 +11,22 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    extensions:
+      footnote: true
+      linkify: true
+      strikethrough: true
+      table: true
+      taskList: true
+      typographer: true
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - ['\[', '\]']
+            - ['$$', '$$']
+          inline:
+            - ['\(', '\)']
+            - ['$', '$']
   highlight:
     noClasses: false
     lineNos: true
@@ -35,6 +51,8 @@ pagination:
 
 permalinks:
   posts: /p/:slug
+  project: /projects/:contentbasename/
+  projects: /projects/:contentbasename/
 
 menus:
   main:
@@ -61,6 +79,9 @@ menus:
         icon: fas fa-tags
     - name: 关于
       pageRef: /about
+      weight: 40
+    - name: 项目
+      pageRef: /projects
       weight: 20
     - name: GitHub
       url: https://github.com/jiangbyte
@@ -84,15 +105,21 @@ params:
       nav_hover_text:
         light: "#1a1816"
         dark: "#1b1c20"
+    # Lock webfonts so OS/browser system stacks don't diverge
+    font:
+      font_size: 16px
+      code_font_size: 15px
+      font_family: "'Noto Sans SC', system-ui, sans-serif"
+      code_font_family: "'JetBrains Mono', ui-monospace, monospace"
     nav:
       group:
         链接:
           - name: GitHub
             url: https://github.com/jiangbyte
-            icon: /img/logo.png
+            icon: fab fa-github
           - name: Resume
             url: https://jiangbyte.cn/resume
-            icon: /img/logo.png
+            icon: fas fa-file-lines
     hometop:
       banner:
         title: 撷时录
@@ -121,8 +148,13 @@ params:
           - name: GitHub
             url: https://github.com/jiangbyte
             icon: fab fa-github
+          - name: Resume
+            url: https://jiangbyte.cn/resume
+            icon: fas fa-file-lines
       siteinfo:
         runtime: 2026-10-01 00:00:00
+      toc:
+        vague: false
     post:
       default:
         # 无封面时按列表下标轮换；每条 ?u= 不同，同页多次请求不会撞缓存
@@ -181,30 +213,49 @@ params:
     footer:
       information:
         author: https://avatars.githubusercontent.com/u/116237950?v=4
-        left:
-          - name: GitHub
-            url: https://github.com/jiangbyte
-            icon: fab fa-github
-        right:
-          - name: 订阅
-            url: /index.xml
-            icon: fas fa-rss
-      group:
-        探索:
-          - name: 文章
-            url: /archives/
-          - name: 分类
-            url: /categories/
-          - name: 标签
-            url: /tags/
-        关于:
-          - name: 关于
-            url: /about/
-          - name: Resume
-            url: https://jiangbyte.cn/resume
-      links:
+        left: []
+        right: []
+      group: {}
+      links: []
+      # 个人媒体入口：图标取自各官网/官方 CDN（/static/img/media/）
+      media:
+        - name: 微信
+          img: /img/media/wechat.png
+          tip: 微信公众号（占位）
+          qr: /img/wechat-qr-placeholder.png
+        - name: 邮箱
+          icon: fas fa-envelope
+          url: mailto:work@example.com
+          tip: work@example.com
+        - name: B站
+          img: /img/media/bilibili.png
+          url: https://space.bilibili.com/0
+          tip: Bilibili（占位）
+        - name: 掘金
+          img: /img/media/juejin.svg
+          url: https://juejin.cn/user/0
+          tip: 掘金（占位）
+        - name: Gitee
+          img: /img/media/gitee.png
+          url: https://gitee.com/jiangbyte
+          tip: Gitee（占位）
+        - name: GitHub
+          icon: fab fa-github
+          url: https://github.com/jiangbyte
+          tip: GitHub
         - name: 订阅
+          icon: fas fa-rss
           url: /index.xml
+          tip: RSS 订阅
+      # 备案信息：ICP 用 name/url；公安备案直接粘贴平台提供的官方 HTML
+      beian:
+        - name: 粤ICP备xxxxxxxx号
+          url: https://beian.miit.gov.cn/
+        - html: |
+            <a target="_blank" rel="noopener noreferrer" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=xxxxxxxxxxxxxxxx" style="display:inline-flex;align-items:center;gap:4px;text-decoration:none;height:20px;line-height:20px;">
+              <img src="https://www.beian.gov.cn/img/ghs.png" alt="" style="float:left;">
+              <span style="float:left;height:20px;line-height:20px;margin:0 0 0 5px;color:#939393;">粤公网安备xxxxxxxxxxxxxxxx号</span>
+            </a>
     comment:
       use: ""
       commentBarrage: false
@@ -261,9 +312,15 @@ params:
       themes:
         light: github-light
         dark: github-dark
+    katex:
+      enable: true
+      per_page: true
+      copytex: true
     lightbox: fancybox
     cdn:
       shiki: https://esm.sh/shiki@4.4.3
+      katex_js: https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.js
+      katex_auto_render: https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/contrib/auto-render.min.js
     search:
       enable: true
       type: local

@@ -1,0 +1,103 @@
+{{ $cfg := site.Params.solitude }}
+{{ $author := site.Params.author.name | default site.Title }}
+{{ $currentYear := now.Year }}
+{{ $startYear := $currentYear }}
+{{ with $cfg.aside.siteinfo.runtime }}{{ $startYear = (time.AsTime .).Year }}{{ end }}
+{{ $yearRange := cond (eq $startYear $currentYear) (printf "%d" $currentYear) (printf "%d – %d" $startYear $currentYear) }}
+
+{{ $info := $cfg.footer.information }}
+{{ $hasAvatar := $info.author }}
+{{ $hasMedia := $cfg.footer.media }}
+
+{{ if or $hasAvatar $hasMedia }}
+  <div id="footer-panel">
+    {{ with $hasAvatar }}
+      <div id="footer_deal">
+        <button class="footer_mini_logo nolazyload" id="footer_mini_logo" type="button" data-solitude-action="toTop" title="{{ i18n "backTop" }}" aria-label="{{ i18n "backTop" }}">
+          <img src="{{ . | relURL }}" alt="" aria-hidden="true">
+        </button>
+      </div>
+    {{ end }}
+
+    {{ with $hasMedia }}
+      <div id="footer-media" aria-label="个人媒体">
+        {{ range . }}
+          {{ $item := . }}
+          {{ $hasUrl := and .url (ne .url "") }}
+          {{ $hasQr := and .qr (ne .qr "") }}
+          {{ $title := or .tip .name }}
+          {{ $external := and $hasUrl (or (strings.HasPrefix .url "http://") (strings.HasPrefix .url "https://") (strings.HasPrefix .url "//")) }}
+          {{ $icon := "" }}
+          {{ with .icon }}{{ $icon = printf `<i class="solitude %s" aria-hidden="true"></i>` . }}{{ end }}
+          {{ with .img }}{{ $icon = printf `<img class="footer-media-img nolazyload" src="%s" alt="">` (. | relURL) }}{{ end }}
+          {{ if $hasUrl }}
+            <a
+              class="footer-media-item"
+              href="{{ .url }}"
+              {{ if $external }}target="_blank" rel="noopener noreferrer"{{ end }}
+              title="{{ $title }}"
+              aria-label="{{ .name }}"
+            >
+              <span class="footer-media-icon">{{ $icon | safeHTML }}</span>
+            </a>
+          {{ else }}
+            <span
+              class="footer-media-item{{ if $hasQr }} has-qr{{ end }}"
+              {{ if not $hasQr }}title="{{ $title }}"{{ end }}
+              aria-label="{{ .name }}"
+              {{ if $hasQr }}tabindex="0" role="button"{{ end }}
+            >
+              <span class="footer-media-icon">{{ $icon | safeHTML }}</span>
+              {{ if $hasQr }}
+                <span class="footer-media-qr">
+                  <img class="nolazyload" src="{{ $item.qr | relURL }}" alt="{{ $item.name }}">
+                  {{ with $item.tip }}<span class="footer-media-qr-tip">{{ . }}</span>{{ end }}
+                </span>
+              {{ end }}
+            </span>
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+{{ end }}
+
+<div id="footer-bar">
+  <div class="footer-bar-links">
+    <div class="copyright">
+      © {{ $yearRange }} By
+      <a class="footer-bar-link" href="{{ site.Home.RelPermalink }}">
+        {{ with $cfg.site.icon }}<img class="author-avatar" src="{{ . | relURL }}" alt="" aria-hidden="true">{{ end }}
+        {{ $author }}
+      </a>
+    </div>
+    <div class="footer-bar-row">
+      <div class="footer-meta-group">
+        <a class="footer-bar-link" href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">{{ i18n "frameworkBy" }} Hugo</a>
+        <a class="footer-bar-link" href="https://github.com/everfu/hugo-solitude" target="_blank" rel="noopener noreferrer">{{ i18n "themeBy" }} Solitude</a>
+      </div>
+      {{ with $cfg.footer.beian }}
+        <div class="beian-group">
+          {{ range . }}
+            {{ with .html }}
+              <span class="beian-official">{{ . | safeHTML }}</span>
+            {{ else }}
+              <a class="footer-bar-link" href="{{ .url }}" title="{{ .name }}"{{ if strings.HasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
+                {{ with .icon }}
+                  {{ if or (strings.HasPrefix . "http://") (strings.HasPrefix . "https://") (strings.HasPrefix . "//") }}
+                    <img class="beian-icon" src="{{ . }}" alt="">
+                  {{ else }}
+                    <img class="beian-icon" src="{{ . | relURL }}" alt="">
+                  {{ end }}
+                {{ end }}
+                <span class="beian-name">{{ .name }}</span>
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+{{ if and $cfg.comment.use $cfg.comment.commentBarrage }}<div class="comment-barrage needEndHide"></div>{{ end }}

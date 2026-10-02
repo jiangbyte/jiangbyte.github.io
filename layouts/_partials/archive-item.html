@@ -1,0 +1,24 @@
+{{ $page := .page | default . }}
+{{ $index := .index | default 0 }}
+{{ $defaults := site.Params.solitude.post.default.cover }}
+{{ $cover := $page.Params.cover }}
+{{ if and (not $cover) $defaults }}
+  {{ $cover = index $defaults (mod $index (len $defaults)) }}
+{{ end }}
+{{ if not $cover }}{{ $cover = "/img/default.avif" }}{{ end }}
+<div class="article-sort-item">
+  <a class="article-sort-item-img" href="{{ $page.RelPermalink }}">
+    <img src="{{ $cover | relURL }}" alt="{{ $page.Title }}" loading="lazy">
+  </a>
+  <div class="article-sort-item-info">
+    <time datetime="{{ $page.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $page.Date.Format "2006-01-02" }}</time>
+    <a class="article-sort-item-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+    {{ with $page.Params.tags }}
+      <div class="article-sort-item-tags">
+        {{ range . }}
+          <a class="article-meta__tags" href="{{ printf "/tags/%s/" (. | urlize) | relLangURL }}">#{{ . }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{{ $posts := where site.RegularPages.ByDate.Reverse "Section" "posts" }}
+{{ if .IsHome }}{{ $homePosts := partial "home-posts.html" . }}{{ $posts = $homePosts.ByDate.Reverse }}{{ end }}
+{{ $defaults := site.Params.solitude.post.default.cover }}
+<div class="card-widget card-recent-post">
+  <div class="item-headline">
+    <i class="solitude fas fa-map"></i>
+    <span>{{ i18n "recentPosts" }}</span>
+  </div>
+  <div class="aside-list">
+    {{ range $index, $post := first 5 $posts }}
+      {{ $cover := $post.Params.cover }}
+      {{ if and (not $cover) $defaults }}
+        {{ $cover = index $defaults (mod $index (len $defaults)) }}
+      {{ end }}
+      {{ if not $cover }}{{ $cover = "/img/default.avif" }}{{ end }}
+      <a class="aside-list-item" href="{{ $post.RelPermalink }}" aria-label="{{ $post.Title }}">
+        <div class="thumbnail">
+          <img src="{{ $cover | relURL }}" alt="" loading="lazy">
+        </div>
+        <div class="content">
+          <span class="title">{{ $post.Title }}</span>
+          {{ with $post.GetTerms "categories" }}
+            <span class="categories">{{ (index . 0).LinkTitle }}</span>
+          {{ end }}
+        </div>
+      </a>
+    {{ end }}
+  </div>
+</div>

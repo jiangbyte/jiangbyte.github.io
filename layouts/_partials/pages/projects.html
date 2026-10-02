@@ -1,0 +1,55 @@
+{{/* Collect content/projects/*.md as project cards (synced from jiangbyte/Projects). */}}
+{{ $pages := .RegularPages.ByWeight }}
+<div id="projects">
+  <section class="projects-group">
+    <div class="projects-grid">
+      {{ range $pages }}
+      {{ $page := . }}
+      {{ $git := $page.Params.git }}
+      {{ $site := $page.Params.site }}
+      {{ $githubRepo := "" }}
+      {{ if $git }}
+        {{ $ghMatches := findRESubmatch `(?i)(?:https?://)?(?:www\.)?github\.com/([^/]+)/([^/#?]+?)(?:\.git)?(?:[/?#]|$)` $git 1 }}
+        {{ with index $ghMatches 0 }}
+          {{ $githubRepo = printf "%s/%s" (index . 1) (index . 2) }}
+        {{ end }}
+      {{ end }}
+      {{ $desc := $page.Params.description | default ($page.Summary | plainify) }}
+      <article class="projects-card">
+        {{ with $page.Params.cover }}
+        <a class="projects-card-cover" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
+          <img class="projects-card-cover-img no-lightbox" src="{{ . }}" alt="" loading="lazy">
+        </a>
+        {{ end }}
+        <div class="projects-card-body">
+          <h3 class="projects-card-title">
+            <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+          </h3>
+          {{ with $desc }}<p class="projects-card-desc">{{ . | plainify | truncate 120 }}</p>{{ end }}
+          {{ with $page.Params.tags }}
+          <ul class="projects-card-tags">
+            {{ range . }}<li class="projects-card-tag">{{ . }}</li>{{ end }}
+          </ul>
+          {{ end }}
+          {{ if $githubRepo }}
+          <div class="projects-card-repo">
+            {{ partial "shortcodes/repository.html" (dict "provider" "github" "label" "GitHub" "base" "https://github.com" "api" "https://api.github.com/repos/" "repo" $githubRepo) }}
+          </div>
+          {{ end }}
+          <div class="projects-card-actions">
+            <a class="projects-card-action" href="{{ $page.RelPermalink }}">详情</a>
+            {{ with $git }}
+            <a class="projects-card-action" href="{{ . }}" target="_blank" rel="noopener noreferrer external nofollow">仓库</a>
+            {{ end }}
+            {{ with $site }}
+            <a class="projects-card-action" href="{{ . }}" target="_blank" rel="noopener noreferrer external nofollow">访问</a>
+            {{ end }}
+          </div>
+        </div>
+      </article>
+      {{ else }}
+      <p class="projects-empty">暂无项目。在 <code>jiangbyte/Projects</code> 下新增 Markdown 后执行 <code>python3 scripts/sync_projects.py</code>。</p>
+      {{ end }}
+    </div>
+  </section>
+</div>

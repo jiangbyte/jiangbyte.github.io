@@ -19,6 +19,11 @@ NOTES = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT.parent / "jia
 POSTS = ROOT / "content" / "posts"
 STATIC_NOTES = ROOT / "static" / "notes"  # legacy; removed on sync
 
+# Local-only posts kept in git (not sourced from Notes). Preserved across sync.
+LOCAL_POSTS = (
+    Path("其它") / "01-Markdown特性完整测试.md",
+)
+
 FM_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.S)
 
 # Random scenery API. Unique ?u= avoids same-page cache / identical draws.
@@ -56,6 +61,12 @@ def sync() -> None:
     index = POSTS / "_index.md"
     index_text = index.read_text(encoding="utf-8") if index.exists() else "---\ntitle: 文章\n---\n"
 
+    preserved: dict[Path, str] = {}
+    for rel in LOCAL_POSTS:
+        fp = POSTS / rel
+        if fp.is_file():
+            preserved[rel] = fp.read_text(encoding="utf-8")
+
     if POSTS.exists():
         shutil.rmtree(POSTS)
     POSTS.mkdir(parents=True)
@@ -87,7 +98,17 @@ def sync() -> None:
             shutil.copy2(src, dest)
             assets += 1
 
+    local_n = 0
+    for rel, text in preserved.items():
+        dest = POSTS / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        # Don't overwrite if Notes now ships the same path
+        if not dest.exists():
+            dest.write_text(ensure_cover(text, rel), encoding="utf-8")
+            local_n += 1
+
     print(f"synced {count} posts -> {POSTS}")
+    print(f"preserved {local_n} local posts")
     print(f"copied {assets} assets beside posts (relative path + render hook)")
     print(f"covers: {COVER_API}?u=<path-hash> (unique per post)")
 

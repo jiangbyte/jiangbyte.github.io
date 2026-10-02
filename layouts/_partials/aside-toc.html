@@ -1,0 +1,20 @@
+<div class="card-widget" id="card-toc">
+  <button
+    type="button"
+    class="item-headline toc-toggle"
+    id="toc-toggle"
+    aria-expanded="true"
+    aria-controls="toc-content"
+  >
+    <span class="toc-toggle-left">
+      <i class="solitude fas fa-bars" aria-hidden="true"></i>
+      <span>{{ i18n "toc" }}</span>
+    </span>
+    <i class="solitude fas fa-chevron-down toc-toggle-chevron" aria-hidden="true"></i>
+  </button>
+  <div class="toc-content" id="toc-content">
+    <ol class="toc">
+      {{- partial "aside-toc-items.html" (dict "headings" .Fragments.Headings) -}}
+    </ol>
+  </div>
+</div>
