@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   repository_dispatch:
-    types: [notes-updated]
+    types: [notes-updated, content-updated]
 
 permissions:
   contents: write
@@ -24,17 +24,21 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Checkout Notes source
+      - name: Checkout Notes + Projects source
         uses: actions/checkout@v4
         with:
           repository: jiangbyte/jiangbyte
           path: _notes_src
           sparse-checkout: |
             Notes
+            Projects
           sparse-checkout-cone-mode: true
 
       - name: Sync Notes into content/posts (build only)
         run: python3 scripts/sync_notes.py "$GITHUB_WORKSPACE/_notes_src/Notes"
+
+      - name: Sync Projects into content/projects (build only)
+        run: python3 scripts/sync_projects.py "$GITHUB_WORKSPACE/_notes_src/Projects"
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
