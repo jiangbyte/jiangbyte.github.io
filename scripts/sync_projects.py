@@ -8,8 +8,10 @@ copied at build / local sync time (same pattern as Notes → posts).
 
 from __future__ import annotations
 
+import re
 import shutil
 import sys
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -21,6 +23,29 @@ PROJECTS_SRC = (
 PROJECTS_DST = ROOT / "content" / "projects"
 
 SKIP_NAMES = {"README.md", "_index.md", "index.md"}
+FM_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.S)
+TITLE_LINE = re.compile(r"^title:\s*.*\n?", re.M)
+DRAFT_FALSE = re.compile(r"^draft:\s*(?:false|False|no|0)\s*\n?", re.M)
+
+
+def strip_title_and_false_draft(text: str) -> str:
+    m = FM_RE.match(text)
+    if not m:
+        return text
+    fm = TITLE_LINE.sub("", m.group(1))
+    fm = DRAFT_FALSE.sub("", fm)
+    fm = re.sub(r"\n{3,}", "\n\n", fm).strip()
+    return f"---\n{fm}\n---\n" + text[m.end() :]
+
+
+def set_title_from_filename(text: str, stem: str) -> str:
+    title_line = f"title: {json.dumps(stem, ensure_ascii=False)}"
+    m = FM_RE.match(text)
+    if not m:
+        return f"---\n{title_line}\n---\n\n" + text
+    fm = TITLE_LINE.sub("", m.group(1)).strip()
+    fm = f"{title_line}\n{fm}" if fm else title_line
+    return f"---\n{fm}\n---\n" + text[m.end() :]
 
 
 def sync() -> None:
@@ -52,7 +77,13 @@ def sync() -> None:
                 continue
             dest = PROJECTS_DST / rel
             dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(src, dest)
+            dest.write_text(
+                set_title_from_filename(
+                    strip_title_and_false_draft(src.read_text(encoding="utf-8")),
+                    src.stem,
+                ),
+                encoding="utf-8",
+            )
             count += 1
         elif "assets" in rel.parts:
             dest = PROJECTS_DST / rel

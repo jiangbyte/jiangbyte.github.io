@@ -1,13 +1,12 @@
 ---
-title: "Markdown 特性完整测试"
+title: "01-Markdown特性完整测试"
 date: 2026-10-02
-draft: false
 description: "覆盖 CommonMark / GFM / 代码高亮 / Mermaid / KaTeX / Solitude shortcode 的厨房水槽测试页，用于视觉与构建回归。"
 categories: ["其它"]
 tags: ["Markdown", "测试", "Shortcode"]
 toc: true
+cover: "https://t.alcy.cc/fj?u=3ae89bc6"
 ---
-
 本文用于一次性冒烟：**标准 Markdown**、**GFM 扩展**、**代码块（含高亮行）**、**Mermaid fence**、**数学公式**，以及本站常用的 **Solitude shortcode**。改主题或自定义 CSS 后，打开本页扫一眼即可。
 
 {{< note type="info" >}}

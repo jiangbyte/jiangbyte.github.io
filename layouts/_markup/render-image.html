@@ -1,27 +1,28 @@
 {{- /* Leaf-page relative images (Obsidian assets/...) — see Notes 工具/hugo */ -}}
-{{- $urlStr := .Destination | safeURL -}}
+{{- $destRaw := .Destination -}}
+{{- $destFs := replace $destRaw "%20" " " -}}
 {{- $altText := .Text -}}
 {{- $caption := .Title -}}
-{{- $url := urls.Parse $urlStr -}}
+{{- $url := urls.Parse $destRaw -}}
 {{- $isRemote := findRE "^(https?|data)" $url.Scheme -}}
-{{- $src := $urlStr -}}
+{{- $src := replace $destFs " " "%20" -}}
 
 {{- if not $isRemote -}}
   {{- $isPageBundle := eq $.Page.File.LogicalName "index.md" -}}
   {{- if $isPageBundle -}}
-    {{- with or ($.Page.Resources.GetMatch $urlStr) (resources.Get $urlStr) -}}
+    {{- with or ($.Page.Resources.GetMatch $destFs) (resources.Get $destFs) -}}
       {{- $src = .RelPermalink -}}
     {{- end -}}
-  {{- else if not (strings.HasPrefix $urlStr "/") -}}
+  {{- else if not (strings.HasPrefix $destFs "/") -}}
     {{- /* leaf + relative: File.Dir + destination → absolute content path */ -}}
-    {{- $correctPath := path.Join $.Page.File.Dir $urlStr -}}
-    {{- with or ($.Page.Resources.GetMatch $urlStr) (resources.Get $correctPath) -}}
+    {{- $correctPath := path.Join $.Page.File.Dir $destFs -}}
+    {{- with or ($.Page.Resources.GetMatch $destFs) (resources.Get $correctPath) -}}
       {{- $src = .RelPermalink -}}
     {{- else -}}
-      {{- $src = printf "/%s" $correctPath -}}
+      {{- $src = replace (printf "/%s" $correctPath) " " "%20" -}}
     {{- end -}}
   {{- else -}}
-    {{- with or ($.Page.Resources.GetMatch $urlStr) (resources.Get $urlStr) -}}
+    {{- with or ($.Page.Resources.GetMatch $destFs) (resources.Get $destFs) -}}
       {{- $src = .RelPermalink -}}
     {{- end -}}
   {{- end -}}

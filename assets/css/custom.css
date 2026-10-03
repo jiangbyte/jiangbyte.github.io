@@ -17,7 +17,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .post #page-header.post-bg,
   .post #page-header.post-bg.post-bg--immersive {
+    height: 19rem;
+    margin-bottom: 0;
     background-color: transparent !important;
     background-image: var(--post-cover-url) !important;
     background-size: cover !important;
@@ -26,10 +29,21 @@
   .post #page-header.post-bg.post-bg--immersive::before {
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.2),
-      transparent 40%,
-      rgba(0, 0, 0, 0.55) 100%
+      rgba(0, 0, 0, 0.28) 0%,
+      rgba(0, 0, 0, 0.2) 40%,
+      rgba(0, 0, 0, 0.58) 100%
     );
+  }
+  .post #post-info {
+    padding: 4.25rem 1rem 1.85rem;
+  }
+  .post #post-info::after {
+    height: 120%;
+    box-shadow: 0 -72px 96px 16px var(--efu-main-op) inset;
+  }
+  .post #page-header.post-bg #post-info .post-title {
+    font-size: 1.28rem;
+    line-height: 1.28;
   }
 }
 
@@ -2689,7 +2703,7 @@ a.footnote-backref:hover {
   }
 
   #body-wrap[data-project="true"] #page-header.post-bg {
-    height: 22rem;
+    height: 18rem;
   }
 }
 
@@ -2699,7 +2713,7 @@ a.footnote-backref:hover {
   }
 
   #body-wrap[data-project="true"] #page-header.post-bg {
-    height: 24rem;
+    height: 19rem;
   }
 
   #body-wrap[data-project="true"] #post-info.project-head {
@@ -2707,7 +2721,7 @@ a.footnote-backref:hover {
     bottom: 0;
     height: auto;
     justify-content: flex-end;
-    padding: 4.5rem 1rem 1.1rem;
+    padding: 4.5rem 1rem 1.85rem;
   }
 
   #body-wrap[data-project="true"] #post-info.project-head .post-title {
