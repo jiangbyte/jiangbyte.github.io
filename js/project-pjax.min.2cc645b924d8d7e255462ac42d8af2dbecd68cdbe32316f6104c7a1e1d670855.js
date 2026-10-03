@@ -1,0 +1,1 @@
+(()=>{const e=()=>{const e=document.getElementById("body-wrap");if(!e)return;e.hasAttribute("data-project")?document.body.setAttribute("data-project","true"):document.body.removeAttribute("data-project")};e(),document.addEventListener("pjax:complete",e)})()
