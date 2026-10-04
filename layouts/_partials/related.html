@@ -23,6 +23,9 @@
               <img class="cover" src="{{ $cover | relURL }}" alt="" loading="lazy" decoding="async">
               <div class="content is-center">
                 <div class="title">{{ $post.Title }}</div>
+                {{ with $post.Params.description }}
+                  <div class="article-excerpt relatedPosts-excerpt">{{ . | plainify | truncate 90 }}</div>
+                {{ end }}
                 <time class="date" datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006-01-02" }}</time>
               </div>
             </a>

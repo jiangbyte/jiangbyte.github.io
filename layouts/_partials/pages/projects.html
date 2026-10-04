@@ -26,10 +26,18 @@
             <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
           </h3>
           {{ with $desc }}<p class="projects-card-desc">{{ . | plainify | truncate 120 }}</p>{{ end }}
-          {{ with $page.Params.tags }}
+          {{ with $page.GetTerms "project_tags" }}
           <ul class="projects-card-tags">
-            {{ range . }}<li class="projects-card-tag">{{ . }}</li>{{ end }}
+            {{ range . }}
+            <li class="projects-card-tag"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+            {{ end }}
           </ul>
+          {{ else }}
+            {{ with $page.Params.project_tags }}
+            <ul class="projects-card-tags">
+              {{ range . }}<li class="projects-card-tag">{{ . }}</li>{{ end }}
+            </ul>
+            {{ end }}
           {{ end }}
           {{ if $githubRepo }}
           <div class="projects-card-repo">

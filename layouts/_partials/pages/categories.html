@@ -1,0 +1,12 @@
+<h1 class="page-title">{{ .Title }}</h1>
+<p class="page-desc">仅包含文章；项目不使用分类。</p>
+<div class="category-lists">
+  <div class="tag-cloud-list is-center">
+    {{ range site.Taxonomies.categories.ByCount }}
+      {{ $postCount := len (where .Pages "Section" "posts") }}
+      {{ if gt $postCount 0 }}
+      <a href="{{ .Page.RelPermalink }}" title="{{ .Page.LinkTitle }}" heotip="{{ .Page.LinkTitle }}"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>{{ .Page.LinkTitle }}<span class="tagsPageCount">{{ $postCount }}</span></span></a>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>

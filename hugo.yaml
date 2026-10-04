@@ -49,10 +49,17 @@ outputs:
 pagination:
   pagerSize: 12
 
+# Articles use tags/categories; projects use project_tags only (never merged).
+taxonomies:
+  tag: tags
+  category: categories
+  project_tag: project_tags
+
 permalinks:
   posts: /p/:contentbasename
   project: /projects/:contentbasename/
   projects: /projects/:contentbasename/
+  project_tags: /project-tags/:slug/
 
 menus:
   main:
@@ -80,12 +87,28 @@ menus:
     - name: 关于
       pageRef: /about
       weight: 40
+      params:
+        icon: fas fa-circle-user
     - name: 项目
-      pageRef: /projects
+      identifier: projects-menu
       weight: 20
+    - name: 全部项目
+      pageRef: /projects
+      parent: projects-menu
+      weight: 10
+      params:
+        icon: fas fa-folder-closed
+    - name: 项目标签
+      pageRef: /project-tags
+      parent: projects-menu
+      weight: 20
+      params:
+        icon: fas fa-tags
     - name: GitHub
       url: https://github.com/jiangbyte
       weight: 30
+      params:
+        icon: fab fa-github
 
 params:
   author:

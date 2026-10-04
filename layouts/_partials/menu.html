@@ -1,0 +1,38 @@
+{{ if site.Menus.main }}
+  <div class="menus_items">
+    {{ range site.Menus.main }}
+      {{ if .HasChildren }}
+        <div class="menus_item">
+          <a class="site-page" href="javascript:void(0);">
+            {{ with .Params.icon }}<i class="solitude {{ . }}"></i>{{ end }}<span>{{ .Name }}</span>
+          </a>
+          <ul class="menus_item_child">
+            {{ range .Children }}
+              <li>
+                <a class="site-page child" href="{{ if .Params.action }}javascript:void(0);{{ else }}{{ .URL | relLangURL }}{{ end }}"{{ with .Params.action }} data-solitude-action="{{ . }}" data-solitude-prevent="true"{{ end }}{{ if and .URL (or (strings.HasPrefix .URL "http://") (strings.HasPrefix .URL "https://")) }} target="_blank" rel="noopener noreferrer"{{ end }}>
+                  {{ with .Params.icon }}<i class="solitude {{ . }}"></i>{{ end }}<span>{{ .Name }}</span>
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      {{ else }}
+        {{ $isExternal := and .URL (or (strings.HasPrefix .URL "http://") (strings.HasPrefix .URL "https://")) }}
+        <div class="menus_item menus_item--leaf">
+          {{/* Desktop header: text only, no icons */}}
+          <a class="site-page menus_item-leaf-nav" href="{{ .URL | relLangURL }}"{{ if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>
+            <span>{{ .Name }}</span>
+          </a>
+          {{/* Sidebar shows the same leaf as a child-style card */}}
+          <ul class="menus_item_child menus_item_child--leaf">
+            <li>
+              <a class="site-page child" href="{{ .URL | relLangURL }}"{{ if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>
+                {{ with .Params.icon }}<i class="solitude {{ . }}"></i>{{ else }}<i class="solitude fas fa-link" aria-hidden="true"></i>{{ end }}<span>{{ .Name }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}

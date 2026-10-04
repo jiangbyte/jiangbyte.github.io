@@ -6,19 +6,29 @@
   {{ $cover = index $defaults (mod $index (len $defaults)) }}
 {{ end }}
 {{ if not $cover }}{{ $cover = "/img/default.avif" }}{{ end }}
-<div class="article-sort-item">
-  <a class="article-sort-item-img" href="{{ $page.RelPermalink }}">
+{{ $category := i18n "uncategorized" }}
+{{ if eq $page.Section "projects" }}
+  {{ $category = "项目" }}
+  {{ with $page.GetTerms "project_tags" }}{{ $category = (index . 0).LinkTitle }}{{ end }}
+{{ else }}
+  {{ with $page.GetTerms "categories" }}{{ $category = (index . 0).LinkTitle }}{{ end }}
+{{ end }}
+{{ $desc := $page.Params.description | default "" | plainify | truncate 60 }}
+<a class="archive-page-item" href="{{ $page.RelPermalink }}" title="{{ $page.Title }}">
+  <div class="archive-page-thumb">
     <img src="{{ $cover | relURL }}" alt="{{ $page.Title }}" loading="lazy">
-  </a>
-  <div class="article-sort-item-info">
-    <time datetime="{{ $page.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $page.Date.Format "2006-01-02" }}</time>
-    <a class="article-sort-item-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
-    {{ with $page.Params.tags }}
-      <div class="article-sort-item-tags">
-        {{ range . }}
-          <a class="article-meta__tags" href="{{ printf "/tags/%s/" (. | urlize) | relLangURL }}">#{{ . }}</a>
-        {{ end }}
-      </div>
-    {{ end }}
+    <span class="archive-page-thumb-fallback" aria-hidden="true">{{ substr $page.Title 0 1 }}</span>
   </div>
-</div>
+  <div class="archive-page-item-main">
+    <div class="archive-page-item-title">{{ $page.Title }}</div>
+    {{ with $desc }}
+      <div class="archive-page-item-excerpt">{{ . }}</div>
+    {{ end }}
+    <div class="archive-page-item-meta">
+      <span class="archive-page-item-category">{{ $category }}</span>
+      <span class="archive-page-item-divider">/</span>
+      <span class="archive-page-item-date">{{ $page.Date.Format (i18n "archiveDateFormat") }}</span>
+    </div>
+  </div>
+  <div class="archive-page-item-arrow" aria-hidden="true"><i class="solitude fas fa-chevron-right"></i></div>
+</a>

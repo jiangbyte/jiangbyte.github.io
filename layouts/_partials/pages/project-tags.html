@@ -1,0 +1,9 @@
+<h1 class="page-title">{{ .Title }}</h1>
+<p class="page-desc">仅包含项目；文章标签见「文库 → 全部标签」。</p>
+<div class="category-lists">
+  <div class="tag-cloud-list is-center">
+    {{ range site.Taxonomies.project_tags.ByCount }}
+      <a href="{{ .Page.RelPermalink }}" title="{{ .Page.LinkTitle }}" heotip="{{ .Page.LinkTitle }}"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>{{ .Page.LinkTitle }}<span class="tagsPageCount">{{ .Count }}</span></span></a>
+    {{ end }}
+  </div>
+</div>

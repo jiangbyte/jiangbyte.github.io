@@ -1,13 +1,45 @@
 {{ define "main" }}
-  <main class="layout" id="content-inner">
-    <div id="tag">
-      <div class="article-sort-title">{{ .Title }}</div>
-      <div class="article-sort">
-        {{ range $index, $page := .Pages.ByDate.Reverse }}
-          {{ partial "archive-item.html" (dict "page" $page "index" $index) }}
-        {{ end }}
+  {{ $plural := .Data.Plural }}
+  {{ $pages := .Pages }}
+  {{ if in (slice "tags" "categories") $plural }}
+    {{ $pages = where .Pages "Section" "posts" }}
+  {{ else if eq $plural "project_tags" }}
+    {{ $pages = where .Pages "Section" "projects" }}
+  {{ end }}
+  {{ $showCategoryBar := in (slice "categories" "tags") $plural }}
+  {{ $pageSize := 10 }}
+  {{ $paginator := .Paginate ($pages.ByDate.Reverse) $pageSize }}
+  {{ $title := .Title }}
+  {{ if eq $plural "project_tags" }}
+    {{ $title = printf "项目 · %s" .Title }}
+  {{ else if eq $plural "tags" }}
+    {{ $title = printf "标签 · %s" .Title }}
+  {{ end }}
+  <main class="layout layout--archive" id="content-inner">
+    {{ if $showCategoryBar }}
+      <div class="home-category-bar category-in-bar">{{ partial "category-bar.html" . }}</div>
+    {{ end }}
+    <div class="archive-layout-row">
+      <div id="page">
+        <div class="archive-page-shell term-archive-shell">
+          {{ if ne $plural "categories" }}
+            <div class="article-sort-title term-archive-title">{{ $title }}</div>
+          {{ end }}
+          <section class="archive-page-section archive-page-section-list" aria-live="polite">
+            <div class="archive-page-list">
+              {{ range $index, $page := $paginator.Pages }}
+                {{ partial "archive-item.html" (dict "page" $page "index" (add $index (mul (sub $paginator.PageNumber 1) $pageSize))) }}
+              {{ else }}
+                <p class="archive-page-state">该{{ if eq $plural "project_tags" }}项目标签{{ else if eq $plural "categories" }}分类{{ else }}标签{{ end }}下暂无内容。</p>
+              {{ end }}
+            </div>
+          </section>
+          <section class="archive-page-section archive-page-section-pagination">
+            {{ partial "pagination.html" . }}
+          </section>
+        </div>
       </div>
+      {{ partial "aside.html" . }}
     </div>
-    {{ partial "aside.html" . }}
   </main>
 {{ end }}

@@ -14,7 +14,7 @@
       <div id="post-firstinfo">
         <div class="meta-firstline">
           <a class="post-meta-original" href="{{ "projects/" | relLangURL }}" title="返回项目列表">项目</a>
-          {{ with .GetTerms "tags" }}
+          {{ with .GetTerms "project_tags" }}
           <div class="tag_share">
             <div class="post-meta__tag-list">
               {{ range . }}

@@ -15,4 +15,5 @@
 {{ partial "katex-runtime.html" . }}
 {{ with resources.Get "js/toc-toggle.js" }}{{ with . | minify | fingerprint }}<script defer src="{{ .RelPermalink }}"{{ if not hugo.IsDevelopment }} integrity="{{ .Data.Integrity }}" crossorigin="anonymous"{{ end }}></script>{{ end }}{{ end }}
 {{ with resources.Get "js/project-pjax.js" }}{{ with . | minify | fingerprint }}<script defer src="{{ .RelPermalink }}"{{ if not hugo.IsDevelopment }} integrity="{{ .Data.Integrity }}" crossorigin="anonymous"{{ end }}></script>{{ end }}{{ end }}
+{{ with resources.Get "js/post-excerpts.js" }}{{ with . | minify | fingerprint }}<script defer src="{{ .RelPermalink }}"{{ if not hugo.IsDevelopment }} integrity="{{ .Data.Integrity }}" crossorigin="anonymous"{{ end }}></script>{{ end }}{{ end }}
 {{ range $cfg.extends.body }}{{ . | safeHTML }}{{ end }}

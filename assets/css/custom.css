@@ -1,3 +1,12 @@
+/* Taxonomy overview helper copy */
+#page > .page-desc {
+  margin: -0.35rem 0 1.25rem;
+  color: var(--efu-secondtext);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
 /* —— Immersive post cover: full-bleed cover image —— */
 .post #page-header.post-bg.post-bg--immersive {
   background-image: var(--post-cover-url);
@@ -265,11 +274,24 @@
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
 }
 
+.home-center-item-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
 .home-center-item-title a,
 .home-center-item-title a:hover,
 .home-center-item-title a:focus-visible {
+  display: block !important;
+  max-width: 100%;
+  overflow: hidden;
   color: var(--milk-ink) !important;
   opacity: 0.88;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
 }
 
 .home-center-item.active .home-center-item-title a {
@@ -436,6 +458,154 @@ samp,
   color: var(--efu-white, #fff) !important;
 }
 
+/* Shared 2-line excerpt from front matter description */
+.article-excerpt {
+  display: -webkit-box;
+  margin: 0.35rem 0 0;
+  overflow: hidden;
+  color: var(--efu-secondtext);
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Home cards: always reserve 2 lines so card heights stay aligned */
+.recent-post-item .article-excerpt {
+  min-height: calc(1.45em * 2);
+}
+
+/* List / card titles: one line + ellipsis everywhere except article detail hero */
+.recent-post-item .article-title,
+.archive-page-item-title,
+.article-sort-item-title,
+.relatedPosts .relatedPosts-item .content .title,
+.card-recent-post .aside-list .aside-list-item .content .title,
+.home-center-title a,
+.home-center-title-link,
+.home-center-item-title a,
+#body-wrap.error .aside-list .aside-list-item .content .title {
+  display: block !important;
+  max-width: 100%;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  word-break: normal;
+}
+
+.home-center-title-desc {
+  margin: 0.25rem 0 0.15rem;
+  color: var(--efu-white, #fff);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.88;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.home-center-title-desc[hidden] {
+  display: none !important;
+}
+
+/* Keep archive cards inside the shell so the trailing chevron is not clipped.
+   One-line nowrap excerpts inflate min-content width; constrain the grid/flex chain. */
+.archive-page-list {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.archive-page-item {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.archive-page-item .archive-page-item-main {
+  min-width: 0;
+}
+
+.archive-page-item .archive-page-item-excerpt {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  margin: -2px 0 8px;
+  overflow: hidden;
+  color: var(--efu-secondtext);
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.45;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.archive-page-item .archive-page-item-arrow {
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Category / tag term lists use the same archive card shell */
+.term-archive-shell .term-archive-title {
+  margin: 0;
+  padding: 18px 24px 12px;
+  border-bottom: var(--style-border);
+  color: var(--efu-fontcolor);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.relatedPosts-excerpt {
+  margin-top: 0.4rem;
+  max-width: 100%;
+  text-align: left;
+}
+
+.relatedPosts .relatedPosts-item .content {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+@media screen and (max-width: 768px) {
+  .home-center-title-desc {
+    font-size: 0.8rem;
+  }
+}
+
+/* Post cover description (align with project-head-desc) */
+.post #page-header.post-bg #post-info .post-head-desc {
+  width: calc(100% - 300px - 80px);
+  max-width: 38rem;
+  margin: 0 0 0.55rem 40px;
+  color: var(--efu-white, #fff);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+
+@media screen and (max-width: 1200px) {
+  .post #page-header.post-bg #post-info .post-head-desc {
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .post #page-header.post-bg #post-info .post-head-desc {
+    z-index: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0.35rem auto 0.55rem;
+    padding: 0 0.25rem;
+    font-size: 0.86rem;
+    text-align: center;
+  }
+}
+
 /* Nav / menu hover → frosted milk, not solid theme fill */
 #nav .menus_items .menus_item:hover > .site-page,
 #page-header #nav #menus a:hover,
@@ -587,7 +757,7 @@ a.article-meta__tags:hover {
 
 /* Pagination: shared for home + archives (hover soft glass, current solid ink) */
 #pagination:not(.pagination-post) .page-number,
-#pagination:not(.pagination-post) a.extend,
+#pagination:not(.pagination-post) .extend,
 .archive-page-section-pagination .archive-page-number,
 .archive-page-section-pagination .archive-page-extend {
   border: none !important;
@@ -610,6 +780,38 @@ a.article-meta__tags:hover {
   -webkit-backdrop-filter: blur(12px);
 }
 
+/* Always-visible pager: disabled prev/next stay in place */
+#pagination:not(.pagination-post) .extend.is-disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: default;
+}
+
+@media screen and (min-width: 769px) {
+  #pagination:not(.pagination-post) span.extend.prev,
+  #pagination:not(.pagination-post) span.extend.next {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    min-width: 80px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  #pagination:not(.pagination-post) span.extend.prev {
+    left: 0;
+  }
+
+  #pagination:not(.pagination-post) span.extend.next {
+    right: 0;
+  }
+}
+
 #pagination:not(.pagination-post) .page-number.current,
 #pagination:not(.pagination-post) .page-number.current:hover,
 .archive-page-section-pagination .archive-page-number.is-current,
@@ -628,6 +830,15 @@ a.article-meta__tags:hover {
   background: var(--efu-card-bg) !important;
   border-color: var(--efu-card-border) !important;
   box-shadow: 0 8px 24px rgba(20, 24, 32, 0.04) !important;
+}
+
+/* Archives nest shell inside #page — drop outer #page elevation so only one shadow remains */
+#page:has(.archive-page-shell) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* Projects: like home — open canvas, elevation only on item cards */
@@ -732,6 +943,47 @@ button.btn-beautify:hover {
   box-shadow: 0 6px 16px rgba(26, 24, 22, 0.22) !important;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+}
+
+/* Header nav: text only (icons stay in sidebar cards) */
+#nav .menus_items .menus_item > .site-page > i.solitude {
+  display: none !important;
+}
+
+/* Sidebar: leaf menus (GitHub / 关于) use the same small cards as nested items */
+#nav .menus_items .menus_item--leaf > .menus_item_child--leaf {
+  display: none !important;
+}
+
+#sidebar #sidebar-menus .menus_items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+#sidebar #sidebar-menus .menus_items .menus_item:not(.menus_item--leaf) {
+  flex: 1 1 100%;
+  width: 100%;
+}
+
+#sidebar #sidebar-menus .menus_items .menus_item--leaf {
+  flex: 0 0 calc(50% - 8px);
+  width: calc(50% - 8px);
+  margin: 10px 4px 4px;
+}
+
+#sidebar #sidebar-menus .menus_items .menus_item--leaf > .menus_item-leaf-nav {
+  display: none !important;
+}
+
+#sidebar #sidebar-menus .menus_items .menus_item--leaf .menus_item_child--leaf {
+  display: flex;
+  margin: 0;
+}
+
+#sidebar #sidebar-menus .menus_items .menus_item--leaf .menus_item_child--leaf li {
+  width: 100%;
+  margin: 0;
 }
 
 /* Mobile sidebar: same solid ink hover (overrides milk-glass tag rule) */
@@ -2702,8 +2954,23 @@ a.footnote-backref:hover {
     grid-template-columns: 1fr;
   }
 
+  /* Stacked head (desc + actions + repo card) needs to grow with content */
   #body-wrap[data-project="true"] #page-header.post-bg {
-    height: 18rem;
+    height: auto;
+    min-height: 18rem;
+  }
+
+  #body-wrap[data-project="true"] #post-info.project-head {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    height: auto;
+    justify-content: flex-end;
+    padding: 4.75rem 1rem 1.35rem;
+  }
+
+  #body-wrap[data-project="true"] #post-info.project-head .project-head-aside {
+    gap: 0.75rem;
   }
 }
 
@@ -2713,15 +2980,17 @@ a.footnote-backref:hover {
   }
 
   #body-wrap[data-project="true"] #page-header.post-bg {
-    height: 19rem;
+    height: auto;
+    min-height: 0;
   }
 
   #body-wrap[data-project="true"] #post-info.project-head {
+    position: relative;
     top: auto;
-    bottom: 0;
+    bottom: auto;
     height: auto;
     justify-content: flex-end;
-    padding: 4.5rem 1rem 1.85rem;
+    padding: 4.5rem 1rem 1.35rem;
   }
 
   #body-wrap[data-project="true"] #post-info.project-head .post-title {
