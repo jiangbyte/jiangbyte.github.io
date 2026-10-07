@@ -1,8 +1,10 @@
-name: Deploy Hugo site to Pages
+name: Merge content sync branch
 
+# GITHUB_TOKEN pushes do not re-trigger other workflows, so this job
+# verifies, merges sync/content → main, and deploys in one run.
 on:
   push:
-    branches: [main]
+    branches: [sync/content]
   workflow_dispatch:
 
 permissions:
@@ -13,14 +15,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  verify-merge-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout site
+      - name: Checkout sync/content
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          ref: sync/content
           fetch-depth: 0
+          submodules: recursive
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -28,8 +31,17 @@ jobs:
           hugo-version: "0.167.0"
           extended: true
 
-      - name: Build
+      - name: Build (verify before merge)
         run: hugo --minify
+
+      - name: Merge sync/content into main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B main origin/main
+          git merge --no-edit -m "merge: sync/content → main" origin/sync/content
+          git push origin main
 
       - name: Deploy public/ to gh-pages
         uses: peaceiris/actions-gh-pages@v4

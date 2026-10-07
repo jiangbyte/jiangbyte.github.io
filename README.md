@@ -12,15 +12,21 @@ Static output is published to the [`gh-pages`](https://github.com/jiangbyte/jian
 
 ```bash
 git submodule update --init --recursive
-# optional: sync Notes / Projects
-python3 scripts/sync_notes.py /path/to/jiangbyte/Notes
-python3 scripts/sync_projects.py /path/to/jiangbyte/Projects
+# sync Notes / Projects from sibling checkout
+python3 scripts/sync_notes.py ../jiangbyte/Notes
+python3 scripts/sync_projects.py ../jiangbyte/Projects
 hugo server
 ```
 
 ## Deploy
 
-Push to site `main`, or push `Notes/**` / `Projects/**` on [`jiangbyte`](https://github.com/jiangbyte/jiangbyte) (triggers `repository_dispatch`) → GitHub Actions syncs content at build time → Hugo → force-pushes `public/` to `gh-pages`.
+From the content repo, run [`jiangbyte/scripts/push.sh`](https://github.com/jiangbyte/jiangbyte/blob/main/scripts/push.sh):
+
+1. Commits/pushes `jiangbyte`
+2. Syncs Notes/Projects into this repo on branch `sync/content` (runs `hugo --minify` locally first)
+3. **Merge content sync branch** verifies Hugo, merges `sync/content` → `main`, then deploys `public/` to `gh-pages`
+
+Direct pushes to `main` (site code only) still use **Deploy Hugo site to Pages**.
 
 Reuse the static site elsewhere:
 

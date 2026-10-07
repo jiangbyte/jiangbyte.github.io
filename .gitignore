@@ -2,14 +2,5 @@ public/
 resources/
 .hugo_build.lock
 .DS_Store
-
-# Notes are synced at build time from jiangbyte/Notes — never commit them here
-content/posts/**
-!content/posts/_index.md
-# Local kitchen-sink test (not from Notes); keep in git for CI
-!content/posts/其它/
-!content/posts/其它/01-Markdown特性完整测试.md
-
-# Projects are synced at build time from jiangbyte/Projects — never commit them here
-content/projects/**
-!content/projects/_index.md
+scripts/__pycache__/
+*.pyc
