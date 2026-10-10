@@ -1,0 +1,23 @@
+# HTTP for bare IP / unknown Host (no TLS redirect)
+:80 {
+	root * /srv
+	encode gzip
+	try_files {path} {path}.html {path}/
+	file_server
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}
+
+# Domain: auto HTTPS (Let's Encrypt) + HTTP→HTTPS for this host
+{$SITE_DOMAIN} {
+	root * /srv
+	encode gzip
+	try_files {path} {path}.html {path}/
+	file_server
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}

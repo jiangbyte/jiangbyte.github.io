@@ -242,22 +242,22 @@ params:
       links: []
       # 个人媒体入口：图标取自各官网/官方 CDN（/static/img/media/）
       media:
-        - name: 微信
-          img: /img/media/wechat.png
-          tip: 微信公众号（占位）
-          qr: /img/wechat-qr-placeholder.png
-        - name: 邮箱
-          icon: fas fa-envelope
-          url: mailto:work@example.com
-          tip: work@example.com
-        - name: B站
-          img: /img/media/bilibili.png
-          url: https://space.bilibili.com/0
-          tip: Bilibili（占位）
-        - name: 掘金
-          img: /img/media/juejin.svg
-          url: https://juejin.cn/user/0
-          tip: 掘金（占位）
+        # - name: 微信
+        #   img: /img/media/wechat.png
+        #   tip: 微信公众号（占位）
+        #   qr: /img/wechat-qr-placeholder.png
+        # - name: 邮箱
+        #   icon: fas fa-envelope
+        #   url: mailto:work@example.com
+        #   tip: work@example.com
+        # - name: B站
+        #   img: /img/media/bilibili.png
+        #   url: https://space.bilibili.com/0
+        #   tip: Bilibili（占位）
+        # - name: 掘金
+        #   img: /img/media/juejin.svg
+        #   url: https://juejin.cn/user/0
+        #   tip: 掘金（占位）
         - name: Gitee
           img: /img/media/gitee.png
           url: https://gitee.com/jiangbyte
@@ -272,13 +272,13 @@ params:
           tip: RSS 订阅
       # 备案信息：ICP 用 name/url；公安备案直接粘贴平台提供的官方 HTML
       beian:
-        - name: 粤ICP备xxxxxxxx号
+        - name: 黔ICP备2026018565号-1
           url: https://beian.miit.gov.cn/
-        - html: |
-            <a target="_blank" rel="noopener noreferrer" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=xxxxxxxxxxxxxxxx" style="display:inline-flex;align-items:center;gap:4px;text-decoration:none;height:20px;line-height:20px;">
-              <img src="https://www.beian.gov.cn/img/ghs.png" alt="" style="float:left;">
-              <span style="float:left;height:20px;line-height:20px;margin:0 0 0 5px;color:#939393;">粤公网安备xxxxxxxxxxxxxxxx号</span>
-            </a>
+        # - html: |
+        #     <a target="_blank" rel="noopener noreferrer" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=xxxxxxxxxxxxxxxx" style="display:inline-flex;align-items:center;gap:4px;text-decoration:none;height:20px;line-height:20px;">
+        #       <img src="https://www.beian.gov.cn/img/ghs.png" alt="" style="float:left;">
+        #       <span style="float:left;height:20px;line-height:20px;margin:0 0 0 5px;color:#939393;">粤公网安备xxxxxxxxxxxxxxxx号</span>
+        #     </a>
     comment:
       use: ""
       commentBarrage: false

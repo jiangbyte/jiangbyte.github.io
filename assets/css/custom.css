@@ -26,10 +26,13 @@
 }
 
 @media screen and (max-width: 768px) {
+  /* Grow with title/desc/meta — fixed 19rem clipped long heroes into the nav */
   .post #page-header.post-bg,
   .post #page-header.post-bg.post-bg--immersive {
-    height: 19rem;
+    height: auto;
+    min-height: 20rem;
     margin-bottom: 0;
+    overflow: hidden;
     background-color: transparent !important;
     background-image: var(--post-cover-url) !important;
     background-size: cover !important;
@@ -38,13 +41,20 @@
   .post #page-header.post-bg.post-bg--immersive::before {
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.28) 0%,
-      rgba(0, 0, 0, 0.2) 40%,
+      rgba(0, 0, 0, 0.38) 0%,
+      rgba(0, 0, 0, 0.22) 40%,
       rgba(0, 0, 0, 0.58) 100%
     );
   }
+  /* Clear fixed #nav (60px) + notch; keep meta pills off the bottom edge */
   .post #post-info {
-    padding: 4.25rem 1rem 1.85rem;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    height: auto;
+    padding: calc(5.5rem + env(safe-area-inset-top, 0px)) 1rem 1.5rem;
   }
   .post #post-info::after {
     height: 120%;
@@ -53,6 +63,12 @@
   .post #page-header.post-bg #post-info .post-title {
     font-size: 1.28rem;
     line-height: 1.28;
+  }
+  /* Nav sits under the status bar / notch on real devices */
+  .post #page-header.post-bg #nav {
+    height: calc(60px + env(safe-area-inset-top, 0px));
+    padding-top: env(safe-area-inset-top, 0px);
+    box-sizing: border-box;
   }
 }
 
@@ -187,8 +203,32 @@
 }
 
 .card-recent-post .aside-list .aside-list-item .thumbnail {
+  flex: 0 0 auto;
   margin-top: 0;
   border-color: var(--efu-card-border);
+}
+
+/* Flex min-width:0 so long titles can shrink and show ellipsis */
+.card-recent-post .aside-list .aside-list-item {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.card-recent-post .aside-list .aside-list-item .content {
+  min-width: 0;
+  overflow: hidden;
+  word-break: normal;
+}
+
+.card-recent-post .aside-list .aside-list-item .content .title {
+  display: block !important;
+  max-width: 100%;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  word-break: normal;
 }
 
 /* Tabs: flush to top edge (kill gap above tab buttons) */
